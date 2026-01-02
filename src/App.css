@@ -1,0 +1,31 @@
+:root {
+  --primary-red: #52ad0a;
+  --bg-light: #f9faf8;
+  --sidebar-white: #ffffff;
+  --text-main: #1a1a1a;
+  --text-muted: #454545;
+  --border-color: #f1f1f1;
+  --card-shadow: 0 8px 24px rgba(149, 157, 165, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  /* display: flex; */
+  height: 100vh;
+  overflow: hidden;
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        overflow: auto;
+        height: auto;
+    }}

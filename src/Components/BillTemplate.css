@@ -1,0 +1,131 @@
+.receipt {
+    padding: 20px;
+    position: relative;
+}
+
+/* Header */
+ 
+.receipt .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+}
+
+/* Bill box */
+.receipt .billsection {
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 5px;
+    height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding: 30px;
+}
+
+/* Typography */
+ .receipt h1 {
+    text-align: center;
+    font-size: 26px;
+    margin: 10px 0;
+    letter-spacing: 2px;
+}
+
+.receipt .stars {
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 5px 0;
+}
+
+.receipt .flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+
+.receipt .bold {
+    font-weight: 900;
+}
+
+/* Dividers */
+.receipt hr.dashed {
+    border-top: 2px dashed #000;
+    margin: 15px 0;
+}
+
+.receipt hr.double {
+    border-top: 4px double #000;
+    margin: 15px 0;
+}
+
+/* Item rows */
+.receipt .item-row {
+    display: grid;
+    grid-template-columns: 30px 1fr 50px 70px;
+    gap: 6px;
+    font-size: 13px;
+    margin: 6px 0;
+}
+
+.receipt .item-row span {
+    text-align: right;
+}
+
+.receipt .item-row span:nth-child(2) {
+    text-align: left;
+}
+
+.receipt .item-row.header {
+    font-weight: bold;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 5px;
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: red; */
+}
+
+/* Barcode */
+.receipt .barcode {
+    margin-top: 30px;
+    height: 60px;
+    width: 100%;
+    background: repeating-linear-gradient(90deg,
+            #000,
+            #000 2px,
+            #fff 2px,
+            #fff 4px);
+}
+
+.receipt .thanks {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+
+/* Actions */
+.receipt .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.receipt .print-check {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.receipt .btn {
+    width: 100%;
+    background-color: var(--primary-red);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px 0;
+}

@@ -1,0 +1,123 @@
+.successContainer {
+    width: 100%;
+    /* max-width: 400px; */
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: red; */
+
+}
+
+.sectionSuccess {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Success Checkmark Circle */
+.successContainer .icon-container {
+    margin-bottom: 30px;
+}
+
+.successContainer .circle {
+    /* width: 200px;
+    height: 200px; */
+    /* border: 4px solid #52ad0a; */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    object-fit: cover;
+    /* margin-bottom: 20px; */
+}
+
+.successContainer .checkmark {
+    width: 35px;
+    height: 20px;
+    border-left: 5px solid #52ad0a;
+    border-bottom: 5px solid #52ad0a;
+    transform: rotate(-45deg);
+    margin-top: -5px;
+}
+
+/* Typography */
+.successContainer h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+}
+
+.successContainer .sub-text {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.successContainer.highlight-link {
+    color: #52ad0a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.successContainer .delivery-info {
+    font-size: 14px;
+    color: #777;
+    margin-top: 15px;
+}
+
+.successContainer .delivery-info span {
+    font-weight: 700;
+    color: #555;
+}
+
+.successContainer .track-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #52ad0a;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Button */
+.successContainer .btn-continue {
+    margin-top: 40px;
+    background-color: #52ad0a;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(82, 173, 10, 0.2);
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.successContainer .btn-continue:active {
+    transform: scale(0.98);
+    background-color: #469409;
+}
+
+/* Footer */
+.successContainer footer {
+    margin-top: auto;
+    padding-top: 80px;
+    font-size: 12px;
+    color: #999;
+}
+
+.successContainer footer a {
+    color: #52ad0a;
+    text-decoration: none;
+    font-weight: 600;
+}
