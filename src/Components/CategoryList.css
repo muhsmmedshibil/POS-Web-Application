@@ -1,16 +1,10 @@
-/* --- Variables & Core Layout --- */
-:root {
-    --text-title: #1a202c;
-    --text-sub: #718096;
-    --bg-light: #f8fafc;
-    --transition: all 0.3s ease;
-}
+
 
 .CategoryList {
     width: 90%;
     padding: 20px;
     margin: 100px auto 1rem auto;
-    background: #fff;
+    /* background: #fff; */
     border-radius: 8px;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -27,6 +21,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
+    padding: 10px 20px;
 }
 
 .header-row h3 {

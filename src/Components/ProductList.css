@@ -12,14 +12,14 @@
     scrollbar-width: none;
 }
 
-.container {
+.Product-List .container {
     width: 100%;
 }
 
 /* ===============================
     HEADER & BUTTONS
 ================================ */
-.header-row {
+.Product-List .header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,13 +28,13 @@
     gap: 15px;
 }
 
-.header-title h1 {
+.Product-List .header-title h1 {
     font-size: 1.5rem;
     margin: 0;
     color: #1a202c;
 }
 
-.btn-primary {
+.Product-List .btn-primary {
     background: #52ad0a;
     color: #fff;
     border: none;
@@ -48,31 +48,178 @@
 /* ===============================
     STATS GRID (RESPONSIVE)
 ================================ */
-.stats-grid {
+.Product-List .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    margin-bottom: 30px;
+    margin: 90px 0 30px 0;
 }
 
-.stat-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+.Product-List .card {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    height: 160px;
+    /* Adjusted slightly for product list fit */
+    box-sizing: border-box;
+    box-shadow: 0px 10px 30px rgba(112, 144, 176, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.trend-up {
-    color: #52ad0a;
-    font-size: 0.85rem;
-    font-weight: bold;
+/* Typography */
+.Product-List .title {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    font-weight: 600;
+}
+
+.Product-List .stat {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--main);
+    margin: 2px 0;
+}
+
+.Product-List .sub-text {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.Product-List .badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.Product-List .pos {
+    background: #e6faf5;
+    color: var(--green);
+}
+
+.Product-List .neg {
+    background: #fdf2f2;
+    color: var(--red);
+}
+
+/* Shared Layout Utils */
+.Product-List .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.Product-List .chart-area {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Card 1: Progress Circle */
+.Product-List .progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.Product-List .circle-svg {
+    width: 65px;
+    height: 65px;
+    transform: rotate(-90deg);
+}
+
+.Product-List .c-bg {
+    fill: none;
+    stroke: red;
+    stroke-width: 4;
+}
+
+.Product-List .c-fill {
+    fill: none;
+    stroke: #52ad0a;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 60, 100;
+}
+
+/* Card 2: Growth Line */
+.Product-List .line-svg {
+    width: 100%;
+    height: 50px;
+}
+
+/* Card 3: Earnings Bars */
+.Product-List .bar-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    gap: 4px;
+}
+
+.Product-List .bar {
+    flex: 1;
+    background: #52ad0a;
+    border-radius: 3px;
+    opacity: 0.8;
+}
+
+/* Card 4: Product List Styling */
+.Product-List .product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.Product-List .product-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.Product-List .product-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.Product-List .product-info {
+    flex-grow: 1;
+}
+
+.Product-List .product-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--main);
+    margin: 0;
+}
+
+.Product-List .product-sales {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 0;
+}
+
+.Product-List .status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--green);
+    border-radius: 50%;
 }
 
 /* ===============================
     CHARTS (RESPONSIVE)
 ================================ */
-.charts-row {
+.Product-List .charts-row {
     display: flex;
     flex-wrap: wrap;
     /* Stacks charts on small screens */
@@ -80,7 +227,7 @@
     margin-bottom: 30px;
 }
 
-.chart-box {
+.Product-List .chart-box {
     flex: 1;
     min-width: 300px;
     /* Forces stack when container < 600px */
@@ -90,7 +237,7 @@
     border: 1px solid #e2e8f0;
 }
 
-.canvas-container {
+.Product-List .canvas-container {
     height: 250px;
     position: relative;
     /* Required for Chart.js relative resizing */
@@ -99,14 +246,14 @@
 /* ===============================
     TABLE SECTION (OVERFLOW FIX)
 ================================ */
-.table-card {
+.Product-List .table-card {
     background: #fff;
     border-radius: 12px;
     border: 1px solid #e2e8f0;
     padding: 20px;
 }
 
-.table-header {
+.Product-List .table-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -115,17 +262,17 @@
     gap: 15px;
 }
 
-.table-actions {
+.Product-List .table-actions {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
 
-.search-input-wrapper {
+.Product-List .search-input-wrapper {
     position: relative;
 }
 
-.search-icon {
+.Product-List .search-icon {
     position: absolute;
     left: 10px;
     top: 50%;
@@ -133,14 +280,14 @@
     color: #718096;
 }
 
-.search-input-wrapper input {
+.Product-List .search-input-wrapper input {
     padding: 8px 12px 8px 35px;
     border-radius: 6px;
     border: 1px solid #e2e8f0;
     outline: none;
 }
 
-.btn-filter {
+.Product-List .btn-filter {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -152,7 +299,7 @@
 }
 
 /* THE SCROLL FIX */
-.table-responsive {
+.Product-List .table-responsive {
     width: 100%;
     overflow-x: auto;
     /* Enable horizontal scroll */
@@ -164,14 +311,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-table {
+.Product-List table {
     width: 100%;
     border-collapse: collapse;
     min-width: 1000px;
     /* Forces scrolling on mobile to keep data readable */
 }
 
-th {
+.Product-List th {
     text-align: left;
     padding: 12px;
     font-size: 13px;
@@ -179,19 +326,19 @@ th {
     border-bottom: 2px solid #edf2f7;
 }
 
-td {
+.Product-List td {
     padding: 12px;
     border-bottom: 1px solid #f7fafc;
     font-size: 14px;
 }
 
-.product-info {
+.Product-List .product-info {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.product-info img {
+.Product-List .product-info img {
     width: 40px;
     height: 40px;
     border-radius: 8px;
@@ -201,12 +348,12 @@ td {
 /* ===============================
     ACTIONS & FOOTER
 ================================ */
-.actions {
+.Product-List .actions {
     display: flex;
     gap: 8px;
 }
 
-.action-btn {
+.Product-List .action-btn {
     border: none;
     background: none;
     cursor: pointer;
@@ -214,11 +361,11 @@ td {
     color: #718096;
 }
 
-.action-btn.delete {
+.Product-List .action-btn.delete {
     color: #ef4444;
 }
 
-.footer {
+.Product-List .footer {
     display: flex;
     justify-content: space-between;
     padding: 20px 0;
@@ -228,7 +375,7 @@ td {
     gap: 10px;
 }
 
-.brand-text {
+.Product-List .brand-text {
     color: #52ad0a;
     font-weight: bold;
 }

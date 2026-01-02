@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import { Search, Filter } from 'lucide-react';
 import './Dashboard.css';
+import { NavBar } from './NavBar';
 
 export const Dashboard = () => {
     const lineChartRef = useRef(null);
@@ -61,16 +62,10 @@ export const Dashboard = () => {
         };
     }, []);
 
-    return (
+    return ( <>  <NavBar head={'Product overview'} text={'Manage your Product'} button={'Create New Product'}/>
         <div className="dashboard">
             <div className="main-container">
-                <div className="header-row">
-                    <div className="header-title">
-                        <h1>Sales overview</h1>
-                        <p>Manage your products</p>
-                    </div>
-                    <button className="btn-primary">Create New Sale</button>
-                </div>
+                
 
                 <div className="stats-grid">
                     {/* {[
@@ -231,5 +226,6 @@ export const Dashboard = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
