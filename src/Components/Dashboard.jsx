@@ -1,14 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { Bell, CircleDot, Search, Filter } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import './Dashboard.css';
-import { NavBar } from './NavBar';
 
 export const Dashboard = () => {
     const lineChartRef = useRef(null);
     const barChartRef = useRef(null);
 
-    // 1. Array of 10 Orders
     const orders = [
         { id: '706682356', date: '24 May, 2023', product: 'Lego Star War...', amount: '$123', status: 'DELIVERED', color: '#e6fffa', textColor: '#2c7a7b' },
         { id: '706682357', date: '25 May, 2023', product: 'Nike Air Max', amount: '$210', status: 'PENDING', color: '#fffaf0', textColor: '#b7791f' },
@@ -23,10 +21,13 @@ export const Dashboard = () => {
     ];
 
     useEffect(() => {
-        const lineCtx = lineChartRef.current.getContext('2d');
-        const barCtx = barChartRef.current.getContext('2d');
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false, // Allows the chart to follow container height
+            plugins: { legend: { display: false } }
+        };
 
-        const lineChart = new Chart(lineCtx, {
+        const lineChart = new Chart(lineChartRef.current, {
             type: 'line',
             data: {
                 labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -34,14 +35,14 @@ export const Dashboard = () => {
                     data: [85, 95, 88, 110, 92, 105, 125],
                     borderColor: '#52ad0a',
                     fill: true,
-                    backgroundColor: 'rgba(99, 102, 241, 0.05)',
+                    backgroundColor: 'rgba(82, 173, 10, 0.05)',
                     tension: 0.4
                 }]
             },
-            options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            options: commonOptions
         });
 
-        const barChart = new Chart(barCtx, {
+        const barChart = new Chart(barChartRef.current, {
             type: 'bar',
             data: {
                 labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -51,7 +52,7 @@ export const Dashboard = () => {
                     borderRadius: 8
                 }]
             },
-            options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            options: commonOptions
         });
 
         return () => {
@@ -61,65 +62,137 @@ export const Dashboard = () => {
     }, []);
 
     return (
-        <>
-            <NavBar head={'CategoryList'} text={'Manage your Categorys'} button={'Create New Sale'} />
-            <div className="dashboard">
-                <div className="main-container">
-                    <div className="header-row">
-                        <div className="header-title">
-                            <h1>Sales overview</h1>
-                            <p>Manage your products</p>
-                        </div>
-                        <button className="btn-primary">Create New Sale</button>
+        <div className="dashboard">
+            <div className="main-container">
+                <div className="header-row">
+                    <div className="header-title">
+                        <h1>Sales overview</h1>
+                        <p>Manage your products</p>
                     </div>
+                    <button className="btn-primary">Create New Sale</button>
+                </div>
 
-                    <div className="stats-grid">
-                        <div className="stat-card">
-                            <small>Profit / Loss</small>
-                            <h3>$2,427</h3>
-                            <span style={{ color: 'green' }}>↑ 5.54%</span>
+                <div className="stats-grid">
+                    {/* {[
+                        { label: 'Profit / Loss', val: '$2,427', up: '5.54%' },
+                        { label: 'Avg Sale Value', val: '$227.28', up: '3.12%' },
+                        { label: 'Total Sales', val: '2,427', up: '12%' },
+                        { label: 'Lifetime Profit', val: '$2,427', up: '5.54%' }
+                    ].map((s, i) => (
+                        <div key={i} className="stat-card">
+                            <small>{s.label}</small>
+                            <h3>{s.val}</h3>
+                            <span style={{ color: 'green' }}>↑ {s.up}</span>
                         </div>
-                        <div className="stat-card">
-                            <small>Avg Sale Value</small>
-                            <h3>$227.28</h3>
-                            <span style={{ color: 'green' }}>↑ 3.12%</span>
-                        </div>
-                        <div className="stat-card">
-                            <small>Total Sales</small>
-                            <h3>2,427</h3>
-                            <span style={{ color: 'green' }}>↑ 12%</span>
-                        </div>
-                        <div className="stat-card">
-                            <small>Lifetime Profit / Loss</small>
-                            <h3>$2,427</h3>
-                            <span style={{ color: 'green' }}>↑ 5.54%</span>
-                        </div>
-                    </div>
+                    ))} */}
 
-                    <div className="charts-row">
-                        <div className="chart-box">
-                            <h4>Sale Analytics</h4>
-                            <div style={{ height: '200px' }}><canvas ref={lineChartRef} /></div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Profit / Loss (M)
+                            </span>
+                            <span class="dots">•••</span>
                         </div>
-                        <div className="chart-box">
-                            <h4>Weekly Performance</h4>
-                            <div style={{ height: '200px' }}><canvas ref={barChartRef} /></div>
-                        </div>
-                    </div>
-
-                    <div className="table-section">
-                        <div className="header-row" style={{ marginBottom: '15px' }}>
-                            <h3>Orders List</h3>
-                            <div style={{ display: 'flex', gap: '10px' }}>
-                                <div style={{ position: 'relative' }}>
-                                    <Search size={16} style={{ position: 'absolute', left: '10px', top: '10px', color: '#718096' }} />
-                                    <input type="text" placeholder="Search..." style={{ padding: '8px 12px 8px 32px', borderRadius: '6px', border: '1px solid #e2e8f0' }} />
-                                </div>
-                                <button className="btn-secondary" style={{ padding: '8px 12px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                    <Filter size={14} /> Filter
-                                </button>
+                        <div class="card-body">
+                            <div>
+                                <div class="trend trend-up">↗ +3.4%</div>
+                                <h2 class="value">$239.94</h2>
+                               
+                            </div>
+                            <div class="chart-container">
+                                <svg class="svg-chart">
+                                    <rect class="bar" x="0" y="15" width="4" height="25" />
+                                    <rect class="bar" x="10" y="25" width="4" height="15" />
+                                    <rect class="bar" x="20" y="5" width="4" height="35" />
+                                    <rect class="bar" x="30" y="20" width="4" height="20" />
+                                    <rect class="bar" x="40" y="0" width="4" height="40" />
+                                    <rect class="bar" x="50" y="12" width="4" height="28" />
+                                    <rect class="bar" x="60" y="8" width="4" height="32" />
+                                </svg>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Total Sales</span>
+                            <span class="dots">•••</span>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="trend trend-down">↘ -0.4%</div>
+                                 <h2 class="value">178,080</h2>
+                            </div>
+                            <div class="chart-container">
+                                <svg class="svg-chart" viewBox="0 0 100 50">
+                                    <path class="line" d="M0,40 Q20,45 40,20 T80,10 T100,35" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Customers</span>
+                            <span class="dots">•••</span>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="trend trend-up">↗ +12%</div>
+                                <h2 class="value">1,240</h2>
+                            </div>
+                            <div class="chart-container">
+                                <svg class="svg-chart" viewBox="0 0 100 50">
+                                    <path class="line" d="M0,45 L20,35 L40,40 L60,15 L80,25 L100,5" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Lifetime Profit / Loss </span>
+                            <span class="dots">•••</span>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="trend trend-up">↗ +1.2%</div>
+                                <h2 class="value">4.82%</h2>
+                            </div>
+                            <div class="chart-container">
+                                <svg class="svg-chart" viewBox="0 0 100 50">
+                                    <path class="line" d="M0,40 H20 V20 H40 V30 H60 V10 H80 V25 H100" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="charts-row">
+                    <div className="chart-box">
+                        <h4>Sale Analytics</h4>
+                        <canvas ref={lineChartRef} />
+                    </div>
+                    <div className="chart-box">
+                        <h4>Weekly Performance</h4>
+                        <canvas ref={barChartRef} />
+                    </div>
+                </div>
+
+                <div className="table-section">
+                    <div className="header-row">
+                        <h3>Orders List</h3>
+                        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                            <div style={{ position: 'relative' }}>
+                                <Search size={16} style={{ position: 'absolute', left: '10px', top: '10px', color: '#718096' }} />
+                                <input type="text" placeholder="Search..." style={{ padding: '8px 12px 8px 32px', borderRadius: '6px', border: '1px solid #e2e8f0' }} />
+                            </div>
+                            <button style={{ padding: '8px 12px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '6px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                <Filter size={14} /> Filter
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -132,7 +205,6 @@ export const Dashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* 2. Mapping through the orders array */}
                                 {orders.map((order) => (
                                     <tr key={order.id}>
                                         <td>ID: {order.id}</td>
@@ -140,15 +212,15 @@ export const Dashboard = () => {
                                         <td>{order.product}</td>
                                         <td>{order.amount}</td>
                                         <td>
-                                            <span className="status-pill" style={{ background: order.color, color: order.textColor }}>
+                                            <span className="status-pill" style={{ background: order.color, color: order.textColor, padding: '4px 8px', borderRadius: '4px' }}>
                                                 {order.status}
                                             </span>
                                         </td>
                                         <td>
-                                            <div className="actions" style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                                                <i className="fa-solid fa-eye" style={{ cursor: 'pointer', color: '#718096' }}></i>
-                                                <i className="fa-solid fa-pen-to-square" style={{ cursor: 'pointer', color: '#718096' }}></i>
-                                                <i className="fa-solid fa-trash" style={{ cursor: 'pointer', color: '#ef4444' }}></i>
+                                            <div style={{ display: 'flex', gap: '10px' }}>
+                                                <span style={{ cursor: 'pointer' }}>👁️</span>
+                                                <span style={{ cursor: 'pointer' }}>✏️</span>
+                                                <span style={{ cursor: 'pointer', color: 'red' }}>🗑️</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -158,8 +230,6 @@ export const Dashboard = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
-
-// export default Dashboard;

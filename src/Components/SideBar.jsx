@@ -12,7 +12,7 @@ export function SideBar({ SetTab, tab }) {
         <div
           className={`nav-item ${tab === 'sale' ? 'active' : ''}`} onClick={() => SetTab('sale')}>
           <i class="bi bi-plus-circle"></i>
-          <span>New Sale</span>
+          <span>New sale</span>
         </div>
         <div  className={`nav-item ${tab === 'productList' ? 'active' : ''}`} onClick={() => SetTab('productList')}>
          <i class="bi bi-box-seam-fill"></i>
