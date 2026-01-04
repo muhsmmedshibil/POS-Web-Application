@@ -15,16 +15,17 @@ export function PaymentSelect({ netPayable, setStatus }) {
 
             <div className="header">
                 <div className="header-left">
-                    {/* <span className="back-arrow">←</span> <i class="bi bi-arrow-left back-arrow"></i> */}
+                    {/* <span className="back-arrow">←</span>  */}
+                    <i class="bi bi-arrow-left back-arrow" onClick={()=>setStatus('bill')}></i>
                     <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}> Select Payment</span>
                 </div>
-                <div className="split-container">
+                {/* <div className="split-container">
                     <label className="switch">
                         <input type="checkbox" defaultChecked />
                         <span className="slider"></span>
                     </label>
                     <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Split</span>
-                </div>
+                </div> */}
             </div>
 
             <div className="amount-section">

@@ -122,7 +122,12 @@ export function CategoryList() {
                                         <td><div className="table-icon-box blue">{item.icon}</div></td>
                                         <td><strong>{item.name}</strong></td>
                                         <td>{item.description}</td>
-                                        <td><Eye size={18} style={{ cursor: 'pointer', color: 'gray' }} /></td>
+                                        <td>
+                                            <div>
+                                                <i className="bi bi-pencil-fill"></i>
+                                                <i className="fa-solid fa-trash"></i>
+                                            </div>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -136,6 +141,7 @@ export function CategoryList() {
                                 <div className="head">
                                     <p>{item.id}</p>
                                     <Eye size={16} color="gray" />
+
                                 </div>
                                 <div className="card-body">
                                     <div className="info">

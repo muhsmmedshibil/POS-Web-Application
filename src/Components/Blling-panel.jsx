@@ -10,14 +10,33 @@ import BillingProductEdit from './BillingProductEdit';
 export function BillingPanel({ cartItems, setCartItems }) {
 
   const [satatus, setStatus] = useState('bill')
-  const[editProductForBill,serEditProductForBill]=useState({})
+  const [editProductForBill, serEditProductForBill] = useState({})
+  const [productIdx, setProductIdx] = useState()
+  const [baseRate, setBaseRate] = useState()
 
-  function EditProductForBill(product){
-    serEditProductForBill(product)
+
+  const findBaseRate = (baseRate) => {
+    setBaseRate(baseRate)
+  }
+
+  const onAddToCart = (quantity) => {
+    console.log(quantity.quantity)
+    const editProduct = cartItems[productIdx]
+    console.log(editProduct)
+
+    editProduct.quantity = quantity.quantity
+    editProduct.sellingRate = quantity.price
+    // setCartItems(...cartItems, cartItems[productIdx].quantity:quantity)
+    setStatus('bill')
+  }
+
+  function EditProductForBill(product, index) {
+
+    serEditProductForBill({ prodictInfo: product, index: index })
   }
 
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * 1, 0);
+  const subtotal = cartItems.reduce((acc, item) => acc + item.sellingRate * 1, 0);
   const tax = subtotal * 0.10;
   const netPayable = subtotal + tax;
 
@@ -32,7 +51,7 @@ export function BillingPanel({ cartItems, setCartItems }) {
               <span>Table 4 • Customer: Walk-In</span>
             </div>
             <div className='row'>
-              <i class="bi bi-arrow-counterclockwise" onClick={()=>setCartItems([])}></i>
+              <i class="bi bi-arrow-counterclockwise" onClick={() => setCartItems([])}></i>
             </div>
           </div>
 
@@ -48,7 +67,7 @@ export function BillingPanel({ cartItems, setCartItems }) {
           <div className="cart-list">
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => (
-                <BillingProduct item={item} setStatus={setStatus} EditProductForBill={EditProductForBill}/>
+                <BillingProduct baseRate={baseRate}  setProductIdx={setProductIdx} index={index} item={item} setStatus={setStatus} EditProductForBill={EditProductForBill} />
               ))
             ) : (
               <div className="empty-cart-msg">
@@ -83,7 +102,7 @@ export function BillingPanel({ cartItems, setCartItems }) {
           satatus == 'receipt' ?
             <BillTemplate cartItems={cartItems} setStatus={setStatus} setCartItems={setCartItems} />
             // satatus == 'printBill' ? <PrintingAnimation />
-            : satatus == 'billingProductEdit' ? <BillingProductEdit editProductForBill={editProductForBill} setStatus={setStatus}/> : ''}
+            : satatus == 'billingProductEdit' ? <BillingProductEdit findBaseRate = {findBaseRate} onAddToCart={onAddToCart} editProductForBill={editProductForBill} setStatus={setStatus} /> : ''}
     </aside>
   );
 }

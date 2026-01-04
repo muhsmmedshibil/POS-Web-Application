@@ -7,7 +7,7 @@ export function BillTemplate({ setCartItems, setStatus, cartItems }) {
     const [printing, setPrinting] = useState(false);
 
     const totalAmount = cartItems.reduce(
-        (sum, item) => sum + item.price,
+        (sum, item) => sum + item.sellingRate,
         0
     );
 
@@ -20,9 +20,9 @@ export function BillTemplate({ setCartItems, setStatus, cartItems }) {
                     <span>Table 4 • Customer: Walk-In</span>
                 </div>
                 <div className="row">
-                    <i className="fa-solid fa-print"></i>
-                    <i className="bi bi-pencil-fill"></i>
-                    <i className="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-print"  onClick={() => setPrinting(true)}></i>
+                    {/* <i className="bi bi-pencil-fill"></i> */}
+                    {/* <i className="fa-solid fa-trash"></i> */}
                 </div>
             </div>
 
@@ -54,9 +54,9 @@ export function BillTemplate({ setCartItems, setStatus, cartItems }) {
                         cartItems.map((item, index) => (
                             <div className="item-row" key={index}>
                                 <span>{index + 1}.</span>
-                                <span>{item.name}</span>
-                                <span>1</span>
-                                <span>{(item.price).toFixed(2)}</span>
+                                <span>{item.productName}</span>
+                                <span>{item.quantity}</span>
+                                <span>{(item.sellingRate).toFixed(0)}</span>
                             </div>
                         ))
                     ) : (
@@ -72,7 +72,7 @@ export function BillTemplate({ setCartItems, setStatus, cartItems }) {
                 <div className="totals">
                     <div className="flex ">
                         <span>TOTAL </span>
-                        <span>{totalAmount.toFixed(2)}</span>
+                        <span>{totalAmount.toFixed(0)}</span>
                     </div>
                     <div className="flex">
                         <span>Tax(10)</span>
@@ -80,7 +80,7 @@ export function BillTemplate({ setCartItems, setStatus, cartItems }) {
                     </div>
                     <div className="flex">
                         <span>CASH</span>
-                        <span>{totalAmount.toFixed(2)}</span>
+                        <span>{totalAmount.toFixed(0)}</span>
                     </div>
                      <div className="flex">
                         <span>Discound</span>
@@ -103,7 +103,7 @@ export function BillTemplate({ setCartItems, setStatus, cartItems }) {
             {/* Actions */}
             <div className="actions">
                 <label className="print-check">
-                    <input type="checkbox" defaultChecked />
+                    <input type="checkbox"  onChange={(e)=>{console.log(e.target.value)}}/>
                     <span>Print Receipt</span>
                 </label>
 

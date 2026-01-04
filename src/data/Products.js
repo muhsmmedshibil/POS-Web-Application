@@ -101,65 +101,209 @@ export default foods
 export const categories = [
   {
     id: "CAT-001",
-    name: "Fast Food",
-    description: "Quick bites including our signature burgers, sliders, and crispy fries.",
-    icon: "🍔",
-    createDate: "2026-01-01"
+    name: "Phone Cases",
+    description: "Protective and stylish phone cases for all models.",
+    icon: "🛡️",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-002",
-    name: "Wood-Fired Pizza",
-    description: "Authentic Italian-style pizzas with fresh toppings and artisanal crust.",
-    icon: "🍕",
-    createDate: "2026-01-01"
+    name: "Screen Protectors",
+    description: "Tempered glass and film protectors to keep your screen scratch-free.",
+    icon: "📲",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-003",
-    name: "Pasta & Italian",
-    description: "Classic pasta dishes featuring house-made sauces and premium ingredients.",
-    icon: "🍝",
-    createDate: "2026-01-01"
+    name: "Chargers & Cables",
+    description: "Fast chargers, wireless chargers, and durable charging cables.",
+    icon: "⚡",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-004",
-    name: "Garden Fresh",
-    description: "Healthy salads and vegetarian bowls sourced from local organic farms.",
-    icon: "🥗",
-    createDate: "2026-01-01"
+    name: "Earphones & Headphones",
+    description: "Wired and wireless audio accessories for crystal clear sound.",
+    icon: "🎧",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-005",
-    name: "Sea & Grill",
-    description: "Freshly caught seafood and premium cuts of meat grilled to perfection.",
-    icon: "🥩",
-    createDate: "2026-01-01"
+    name: "Power Banks",
+    description: "Portable battery packs to keep your devices powered on the go.",
+    icon: "🔋",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-006",
-    name: "Breakfast Bar",
-    description: "Start your day with pancakes, eggs, and fresh morning pastries.",
-    icon: "🥞",
-    createDate: "2026-01-01"
+    name: "Phone Holders & Stands",
+    description: "Stands, grips, and car mounts for hands-free convenience.",
+    icon: "📎",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-007",
-    name: "Sweet Delights",
-    description: "Gourmet desserts, cakes, and artisanal ice creams for your sweet tooth.",
-    icon: "🍰",
-    createDate: "2026-01-01"
+    name: "Smartwatch Accessories",
+    description: "Bands, chargers, and cases for all types of smartwatches.",
+    icon: "⌚",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-008",
-    name: "Refreshments",
-    description: "Craft sodas, fresh juices, and chilled beverages for every mood.",
-    icon: "🥤",
-    createDate: "2026-01-01"
+    name: "Bluetooth Accessories",
+    description: "Speakers, earbuds, and other wireless audio gadgets.",
+    icon: "🔊",
+    createDate: "2026-01-03"
   },
   {
     id: "CAT-009",
-    name: "Caffeine Hub",
-    description: "Premium roasted coffee and fine tea blends served hot or iced.",
-    icon: "☕",
-    createDate: "2026-01-01"
+    name: "Memory & Storage",
+    description: "SD cards, USB drives, and external storage solutions.",
+    icon: "💾",
+    createDate: "2026-01-03"
+  },
+  {
+    id: "CAT-010",
+    name: "Cleaning & Maintenance",
+    description: "Cleaning kits, screen wipes, and maintenance tools for your devices.",
+    icon: "🧽",
+    createDate: "2026-01-03"
   }
+];
+
+
+
+export const phoneProducts = [
+  {
+    productID: 'SMP1',
+    productName: "Galaxy S23",
+    image: "https://igalaxy.nl/cdn/shop/files/519nePwnpIL.jpg?v=1706038274&width=445",
+    category: "Smartphone",
+    purchaseRate: 52000,
+    sellingRate: 62000,
+    profit: 10000,
+    unit: "pcs",
+     quantity: 1,
+    totalStock: 25,
+    Discond: 0,
+    createdDate: "2025-01-01",
+  },
+
+
+  {
+    productID: 'SMP2',
+    productName: "iPhone 14",
+    image: "https://media-ik.croma.com/prod/https://media.tatacroma.com/Croma%20Assets/Communication/Mobiles/Images/310715_0_bjpqb7.png?tr=w-360",
+    category: "Smartphone",
+    purchaseRate: 58000,
+    sellingRate: 70000,
+    profit: 12000,
+    unit: "pcs",
+     quantity: 1,
+    totalStock: 18,
+    Discond: 3,
+    createdDate: "2025-01-02",
+  },
+  {
+    productID: 'SMP3',
+    productName: "Redmi Note 13",
+    image: "https://www.androidauthority.com/wp-content/uploads/2024/01/Xiaomi-Redmi-Note-13-Pro-Plus-5G_3-scaled-840w-472h.jpg.webp",
+    category: "Smartphone",
+    purchaseRate: 14000,
+    sellingRate: 18000,
+    profit: 4000,
+    unit: "pcs",
+     quantity: 1,
+    totalStock: 40,
+    Discond: 6,
+    createdDate: "2025-01-03",
+    
+  },
+  {
+    productID: 'SMP4',
+    productName: "Realme C55",
+    image: "https://vasanthandco.in/UploadedFiles/productimages/20240727123514-%20%20(1).png",
+    category: "Smartphone",
+    purchaseRate: 12000,
+    sellingRate: 15500,
+    profit: 3500,
+    unit: "pcs",
+     quantity: 1,
+    totalStock: 35,
+    Discond: 5,
+    createdDate: "2025-01-04",
+  },
+  {
+    productID: 'SMP5',
+    productName: "OnePlus Nord CE 3",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFxVzuU40_11765XI2f1iM_z35MaIN9c69NQ&s",
+    category: "Smartphone",
+    purchaseRate: 23000,
+    sellingRate: 28000,
+    profit: 5000,
+    unit: "pcs",
+     quantity: 1,
+    totalStock: 22,
+    Discond: 4,
+    createdDate: "2025-01-05",
+  },
+  {
+    productID: 'SMP6',
+    productName: "Vivo Y20",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsoJ20CvnA1Jc4xb8KzJ_FgiMKU51B3wuBkg&s",
+    category: "Smartphone",
+    purchaseRate: 10000,
+    sellingRate: 13000,
+    profit: 3000,
+    unit: "pcs",
+     quantity: 1,
+    totalStock: 50,
+    Discond: 7,
+    createdDate: "2025-01-06",
+  },
+  
+  {
+    productID: "WCH1",
+    productName: "Galaxy Watch 3 LTE",
+    image: "https://media.flixcar.com/webp/synd-asset/Samsung-212085911-in-galaxy-watch7-l305-sm-l305fzeains-542367108--Download-Source--zoom.png",
+    category: "Watch",
+    purchaseRate: 30000,
+    sellingRate: 38000,
+    profit: 8000,
+    unit: "pcs",
+    quantity: 1,
+    totalStock: 10,
+    Discount: 0,
+    createdDate: "2025-01-10"
+},
+{
+    productID: "WCH2",
+    productName: "Galaxy Watch 3 GPS ",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJHzX93xo5QRlOakLUt6LAEBKJClmRZd_0FA&s",
+    category: "Watch",
+    purchaseRate: 28000,
+    sellingRate: 35000,
+    profit: 7000,
+    unit: "pcs",
+    quantity: 1,
+    totalStock: 12,
+    Discount: 0,
+    createdDate: "2025-01-10"
+},
+{
+    productID: "WCH3",
+    productName: "Galaxy Watch3 (B) ",
+    image: "https://m.media-amazon.com/images/I/71Y6gpDqPdL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg",
+    category: "Watch",
+    purchaseRate: 29000,
+    sellingRate: 36000,
+    profit: 7000,
+    unit: "pcs",
+    quantity: 1,
+    totalStock: 8,
+    Discount: 0,
+    createdDate: "2025-01-10"
+}
+
+
 ];

@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
-import './BillingProductEdit.css';
+import React, { useState, useEffect } from "react";
+import "./BillingProductEdit.css";
 
-const BillingProductEdit = ({ setStatus, onAddToCart,editProductForBill }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [discount, setDiscount] = useState(53);
-  const [price, setPrice] = useState("34.99");
+const BillingProductEdit = ({ findBaseRate, setStatus, onAddToCart, editProductForBill }) => {
+  console.log(editProductForBill, 'lllllllllll')
 
-  const handleIncrement = () => setQuantity(prev => prev + 1);
-  const handleDecrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  const baseRate = editProductForBill.prodictInfo.sellingRate;
+  console.log(baseRate, 'lkkkkkkkkkkkkkkk')
+  const productIdx = editProductForBill.index
 
-  const handlePriceBlur = (e) => {
-    const val = e.target.value;
-    if (isNaN(val) || val === "") {
-      setPrice("0.00");
-    } else {
-      setPrice(parseFloat(val).toFixed(2));
-    }
-  };
+  const [quantity, setQuantity] = useState(editProductForBill.prodictInfo.quantity);
+  const [discount, setDiscount] = useState(0);
+  const [extra, setExtra] = useState(0);
+  const [price, setPrice] = useState(baseRate);
+
+  useEffect(() => {
+    const calculated = baseRate * quantity + Number(extra) - Number(discount);
+    setPrice(calculated >= 0 ? calculated : 0); // No negative price
+  }, [quantity, discount, extra, baseRate]);
+  findBaseRate(baseRate)
+
+  const handleIncrement = () =>
+    setQuantity((q) => Math.max(1, q + 1));
+
+  const handleDecrement = () =>
+    setQuantity((q) => Math.max(1, q - 1));
 
   return (
     <div className="modalContainer">
       <header className="modal-header">
         <div className="header-left">
-          {/* <span className="close-btn" onClick={()=>setStatus('bill')}>&times;</span> */}
-          {/* <i class="bi bi-x-circle close-btn" onClick={()=>setStatus('bill')}></i> */}
-          <i class="bi bi-x-lg close-btn" onClick={()=>setStatus('bill')}> </i>
-          <h2>{editProductForBill.name}</h2>
+          <i className="bi bi-x-lg close-btn" onClick={() => setStatus("bill")}></i>
+          <h2>{editProductForBill.prodictInfo.productName}</h2>
         </div>
-        <button 
-          className="btn-add" 
-          onClick={() => onAddToCart({ quantity, discount, price })}
+        <button
+          className="btn-add"
+          onClick={() =>
+            onAddToCart({ quantity, discount, extra, price, productIdx })
+          }
         >
           Add to Cart
         </button>
@@ -38,51 +45,63 @@ const BillingProductEdit = ({ setStatus, onAddToCart,editProductForBill }) => {
       <div className="modal-body">
         <div className="product-visual">
           <div className="img-display">
-            <img 
-              src={editProductForBill.image}
-           
-            />
+            <img src={editProductForBill.prodictInfo.image} alt="" />
           </div>
+
+
           <div className="qty-box">
-            <button className="qty-btn" onClick={handleDecrement}>−</button>
+            <button className="qty-btn" onClick={handleDecrement}>
+              −
+            </button>
             <span id="qty-val">{quantity}</span>
-            <button className="qty-btn" onClick={handleIncrement}>+</button>
+            <button className="qty-btn" onClick={handleIncrement}>
+              +
+            </button>
           </div>
         </div>
 
-        <span className="section-title">Product Info</span>
-
         <div className="info-line">
-          <span className="key">SKU</span>
-          <span className="val">12343562</span>
-        </div>
-        <div className="info-line">
-          <span className="key">Tax Group</span>
-          <span className="val">Clothing</span>
+          <span className="key">productID</span>
+          <span className="val">{editProductForBill.prodictInfo.productID}</span>
+        </div> <div className="info-line">
+          <span className="key">Category</span>
+          <span className="val">{editProductForBill.prodictInfo.category}</span>
         </div>
 
         <hr className="divider" />
 
+
+        {/* <div className="input-row">
+          <label>Discount</label>
+          <input
+            type="number"
+            className="styled-input"
+            value={discount}
+            min="0"
+            onChange={(e) => setDiscount(Number(e.target.value))}
+          />
+        </div> */}
+
         <div className="input-row">
-          <label>Discount (%)</label>
-          <input 
-            type="number" 
-            className="styled-input" 
-            value={discount} 
-            onChange={(e) => setDiscount(e.target.value)}
+          <label>Extra Charges</label>
+          <input
+            type="number"
+            className="styled-input"
+            value={extra}
+            min="0"
+            onChange={(e) => setExtra(Number(e.target.value))}
           />
         </div>
 
         <div className="input-row">
-          <label>Sale Price</label>
+          <label>Last Price</label>
           <div className="price-wrapper">
-            <span className="currency">$</span>
-            <input 
-              type="text" 
-              className="styled-input" 
-              value={editProductForBill.price}
-              onChange={(e) => setPrice(e.target.value)}
-              onBlur={handlePriceBlur}
+            <span className="currency">₹</span>
+            <input
+              type="number"
+              className="styled-input"
+              value={price}
+              readOnly
             />
           </div>
         </div>

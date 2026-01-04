@@ -1,21 +1,21 @@
 import './ProductList.css';
-import { foodItems } from '../data/Products.js';
+import { foodItems, phoneProducts } from '../data/Products.js';
 
 import { Search, Filter } from 'lucide-react';
 
 import { NavBar } from './NavBar.jsx';
 
 export function ProductList() {
-  
 
-    
+
+
 
     return (
         <>
             <NavBar head={'Product overview'} text={'Manage your Product'} button={'Create New Product'} />
             <main className="Product-List">
                 <div className="container">
-                    
+
                     <div className="stats-grid">
                         <div className="card">
                             <p className="title">Stock Info</p>
@@ -75,7 +75,7 @@ export function ProductList() {
                                     </div>
                                     <div className="status-dot"></div>
                                 </div>
-                                 <div className="product-item">
+                                <div className="product-item">
                                     <div className="product-img" style={{ background: '#E3F2FD' }}></div>
                                     <div className="product-info">
                                         <p className="product-name">Horizon UI PRO</p>
@@ -83,7 +83,7 @@ export function ProductList() {
                                     </div>
                                     <div className="status-dot"></div>
                                 </div>
-                                
+
                                 {/* ... Repeat for other items if necessary ... */}
                             </div>
                         </div>
@@ -117,39 +117,42 @@ export function ProductList() {
                             <thead>
                                 <tr>
                                     <th style={{ width: '40px' }}><input type="checkbox" /></th>
-                                    <th>SKU</th>
+                                    <th>PRO ID</th>
                                     <th>Product Name</th>
                                     <th>Category</th>
-                                    <th>Brand</th>
-                                    <th>Price</th>
                                     <th>Unit</th>
                                     <th>Qty</th>
-                                    <th>Created By</th>
+                                    <th>Purchase Rate</th>
+                                    <th>Selling Rate</th>
+                                    <th>Discond</th>
+                                    <th>profit</th>
                                     <th style={{ textAlign: 'center' }}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {foodItems.map((item) => (
-                                    <tr key={item.sku} style={{ borderTop: '1px solid #f7fafc' }}>
+                                {phoneProducts.map((item) => (
+                                    <tr key={item.productID} style={{ borderTop: '1px solid #f7fafc' }}>
                                         <td><input type="checkbox" /></td>
-                                        <td>{item.sku}</td>
+                                        <td>{item.productID}</td>
                                         <td>
                                             <div className="product-info" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                <img src={item.image} alt={item.name} style={{ width: '30px', height: '30px', borderRadius: '4px' }} />
-                                                {item.name}
+                                                <img src={item.image} alt={item.productName} style={{ width: '30px', height: '30px', borderRadius: '4px' }} />
+                                                {item.productName}
                                             </div>
                                         </td>
-                                        <td>{item.cat}</td>
-                                        <td>{item.brand}</td>
-                                        <td>{item.price}</td>
+                                        <td>{item.category}</td>
                                         <td>{item.unit}</td>
-                                        <td>{item.qty}</td>
-                                        <td>{item.user}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>₹ {item.purchaseRate}</td>
+                                        <td>₹ {item.sellingRate}</td>
+                                        
+                                        <td>{item.Discond} %</td>
+                                        <td>₹ {item.profit}</td>
                                         <td>
                                             <div className="actions" style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                                                <span style={{ cursor: 'pointer', color: '#718096' }}>👁️</span>
-                                                <span style={{ cursor: 'pointer', color: '#718096' }}>✏️</span>
-                                                <span style={{ cursor: 'pointer', color: '#ef4444' }}>🗑️</span>
+                                                <i class="bi bi-eye-fill"></i>
+                                                <i className="bi bi-pencil-fill"></i>
+                                                <i className="fa-solid fa-trash"></i>
                                             </div>
                                         </td>
                                     </tr>

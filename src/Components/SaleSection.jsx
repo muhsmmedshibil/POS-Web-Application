@@ -1,13 +1,24 @@
 import "./SaleSection.css";
 import { useState } from 'react';
-import food, { categories } from '../data/Products.js';
+import food, { categories, phoneProducts } from '../data/Products.js';
 import { SaleProductList } from "./SaleProductList.jsx";
 import { BillingPanel } from "./Blling-panel.jsx";
 export function SaleSection() {
   const [cartItems, setCartItems] = useState([])
+
   function cartProduct(product) {
-    setCartItems([...cartItems, product])
-    console.log(cartItems)
+    const existing = cartItems.find(item => item.productID === product.productID);
+
+    if (existing) {
+
+      const updatedCart = cartItems.map(item =>
+        item.productID === product.productID ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCartItems(updatedCart);
+    } else {
+
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
   }
   return (
     <main className="main-content">
@@ -41,11 +52,8 @@ export function SaleSection() {
                 key={category.id || index}
                 className={`cat-card ${category.isActive ? 'active' : ''}`}
               >
-                <i
-                  className={category.icon || "fa-solid fa-bowl-rice"}
-                  style={{ color: category.color || "#d35400" }}
-                >{category.icon}</i>
-                <span>{category.name}</span>
+                <span className="Icon">{category.icon}</span>
+                <span className="name">{category.name}</span>
               </div>
             ))}
           </div>
@@ -55,7 +63,7 @@ export function SaleSection() {
           <h2 className="section-header">Menu Items</h2>
 
           <div className="menu-grid">
-            {food.map((item) => (
+            {phoneProducts.map((item) => (
 
               <SaleProductList item={item} cartProduct={cartProduct} />
             ))}

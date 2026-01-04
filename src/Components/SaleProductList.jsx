@@ -13,10 +13,10 @@ export function SaleProductList({ item, cartProduct }) {
     return (
         <>
             <div className="product-card" onClick={handleClick}>
-                <img src={item.image} alt={item.name} />
-                <h3>{item.name}</h3>
-                <p className="price">₹{item.price.toFixed(2)}</p>
-                <small>8 items available</small>
+                <img src={item.image} alt={item.productName} />
+                <h3>{item.productName}</h3>
+                <p className="price">₹{item.sellingRate.toFixed(2)}</p>
+                <small>{item.totalStock} items available</small>
             </div>
 
             <audio ref={audioRef} src={clickSound} />

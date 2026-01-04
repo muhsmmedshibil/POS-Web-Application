@@ -129,10 +129,13 @@
     margin-bottom: 8px;
 }
 
-.main-content .cat-card span {
+.main-content .cat-card .name {
     font-size: 13px;
     font-weight: 600;
     color: var(--text-dark);
+}
+.Icon{
+    font-size: 25px;
 }
 
 /* --- Menu Grid (Product Alignment) --- */
@@ -204,7 +207,7 @@
 
 @media (max-width: 576px) {
     .secentmain {
-        padding: 15px;
+        padding: 5px;
     }
 
     .main-content .menu-grid {

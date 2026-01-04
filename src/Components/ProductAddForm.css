@@ -1,0 +1,347 @@
+/* --- Variable Definitions --- */
+:root {
+    --bg-main: #f4f7f6;
+    --card-bg: #ffffff;
+    --primary-green: #9df1b0;
+    --primary-green-dark: #7ed994;
+    --error-red: #ff4d4d;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --input-bg: #fdfdfd;
+    --border-color: #e0e6ed;
+    --border-radius: 12px;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+}
+
+/* --- Base Layout --- */
+.ProductAddcontainer {
+    width: 100%;
+    height: 100vh; /* Changed from height to min-height to manage content growth */
+    margin: 20px auto;
+    overflow-y: scroll;
+    padding: 20px 40px;
+    /* background-color: white; */
+    font-family: 'Inter', -apple-system, sans-serif;
+    box-sizing: border-box;
+    color: var(--text-main);
+    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+/* --- Header Section --- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* --- Responsive Grid Layout --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* --- Card Styling --- */
+.card-p {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+    /* Overflow protection */
+    overflow: hidden; 
+    word-wrap: break-word;
+}
+
+.card-p h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 10px;
+}
+
+/* --- Form Elements --- */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    max-width: 100%; /* Safety cap for width */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--input-bg);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-green-dark);
+    box-shadow: 0 0 0 3px rgba(157, 241, 176, 0.2);
+    background: #fff;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical; /* Prevents users from breaking width with manual resize */
+    min-height: 80px;
+}
+
+/* --- Image Upload Area --- */
+.upload-container {
+    width: 100%;
+    min-height: 220px;
+    border: 2px dashed #cbd5e0;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #fcfcfc;
+    transition: var(--transition);
+    overflow: hidden; /* Clips any image bleed */
+}
+
+.upload-container:hover {
+    border-color: var(--primary-green-dark);
+    background: #f9fffb;
+}
+
+.file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.drop-zone-label {
+    text-align: center;
+    pointer-events: none;
+    padding: 15px;
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    color: #a0aec0;
+    margin-bottom: 10px;
+}
+
+.preview-container {
+    width: 100%;
+    max-height: 350px; /* Limits the vertical space a preview takes */
+    position: relative;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.img-preview {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* --- Validation Styles --- */
+.error-border {
+    border-color: var(--error-red) !important;
+}
+
+.error-border-dash {
+    border-color: var(--error-red) !important;
+    background-color: #fffafa;
+}
+
+.err-msg {
+    color: var(--error-red);
+    font-size: 0.75rem;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
+
+/* --- Buttons --- */
+.btn-draft, .btn-add {
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    white-space: nowrap; /* Prevents text from splitting on two lines */
+}
+
+.btn-draft {
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.btn-add {
+    background: var(--primary-green);
+    border: none;
+    color: #1a4d2e;
+}
+
+.btn-add:hover:not(:disabled) {
+    background: var(--primary-green-dark);
+    transform: translateY(-1px);
+}
+
+.btn-add:disabled {
+    background: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.btn-remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--error-red);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Unique ID Validation Styling */
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.validation-loader {
+    position: absolute;
+    right: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.tick-icon {
+    color: #2ecc71;
+    animation: scaleUp 0.3s ease;
+}
+
+.cross-icon {
+    color: #e74c3c;
+    animation: scaleUp 0.3s ease;
+}
+
+.success-border {
+    border: 1px solid #2ecc71 !important;
+    background-color: #fafffb;
+}
+
+@keyframes scaleUp {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Ensure icons spin smoothly */
+.fa-circle-notch {
+    color: #999;
+}
+
+/* --- MEDIA QUERIES --- */
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1.4fr 1fr;
+    }
+    .ProductAddcontainer {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 850px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .btn-group {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ProductAddcontainer {
+        padding: 15px 10px;
+    }
+    
+    .card-p {
+        padding: 16px;
+    }
+
+    .header-section h2 {
+        font-size: 1.25rem;
+    }
+}

@@ -6,10 +6,11 @@ import './Home.css';
 import { ProductList } from '../Components/ProductList';
 import { CategoryList } from '../Components/CategoryList';
 import {Dashboard} from '../Components/Dashboard';
+import { ProductAddForm } from '../Components/ProductAddForm';
 
 
 function Home() {
-  const [tab, SetTab] = useState('sale')
+  const [tab, SetTab] = useState('productAdd')
 
 
 
@@ -20,7 +21,7 @@ function Home() {
         tab == 'sale' ? <SaleSection /> :
           tab == 'productList' ? <ProductList /> :
             tab == 'categoryList' ? <CategoryList /> :
-              tab == 'settings' ? '' : ''}
+              tab == 'settings' ? '' : tab == 'productAdd'? <ProductAddForm/>:''}
     </section>
   );
 }
