@@ -4,7 +4,10 @@ import './ProductAddForm.css';
 import { NavBar } from './NavBar';
 import { categories } from '../data/Products';
 
-export function ProductAddForm() {
+export function ProductAddForm({SetTab}) {
+     function iconAction(){
+        SetTab('productList')
+    }
     const initialState = {
         name: '',
         id: '',
@@ -139,12 +142,13 @@ export function ProductAddForm() {
             setIsSubmitting(false);
         }
     };
+   
 
     return (
         <div className="ProductAddcontainer">
-            <NavBar head={'Add New Product'} text={'Create New  Product for very simple'} button={' Add Product'} buttonAction={handleSubmit} />
+            <NavBar head={'Add New Product'} text={'Create New  Product for very simple'} button={' Add Product'} buttonAction={handleSubmit} iconAction ={iconAction}/>
 
-            <header className="header-section">
+            {/* <header className="header-section">
                 <h2><i className="fas fa-box"></i> New Inventory Item</h2>
                 <div className="btn-group">
                     <button className="btn-draft" type="button" disabled={isSubmitting}>
@@ -154,7 +158,7 @@ export function ProductAddForm() {
                         {isSubmitting ? "Processing..." : <><i className="fas fa-check"></i> Add Product</>}
                     </button>
                 </div>
-            </header>
+            </header> */}
 
             <div className="dashboard-grid">
                 <div className="left-col">
@@ -251,8 +255,8 @@ export function ProductAddForm() {
                                     </label>
                                 </div>
                             ) : (
-                                <div className="preview-container">
-                                    <img src={preview} alt="Preview" className="img-preview" />
+                                <div className="preview-container" >
+                                    <img src={preview} alt="Preview" className="img-preview"  />
                                     <button className="btn-remove" type="button" onClick={removeImage}>
                                         <i className="fas fa-times"></i>
                                     </button>

@@ -1,18 +1,27 @@
 import './ProductList.css';
 import { foodItems, phoneProducts } from '../data/Products.js';
 
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, DecimalsArrowLeftIcon } from 'lucide-react';
 
 import { NavBar } from './NavBar.jsx';
+import { useState } from 'react';
+import { DeletionModal } from './DeletionModal.jsx';
 
-export function ProductList() {
+export function ProductList({ SetTab }) {
+    function addproduct() {
+        SetTab('productAdd')
+    }
+
+    // const [delete , setDelete] = useState(false)
+    const [IsDelete, setDelete] = useState(false);
+
 
 
 
 
     return (
         <>
-            <NavBar head={'Product overview'} text={'Manage your Product'} button={'Create New Product'} />
+            <NavBar head={'Product overview'} text={'Manage your Product'} button={'Create New Product'} buttonAction={addproduct} />
             <main className="Product-List">
                 <div className="container">
 
@@ -124,8 +133,7 @@ export function ProductList() {
                                     <th>Qty</th>
                                     <th>Purchase Rate</th>
                                     <th>Selling Rate</th>
-                                    <th>Discond</th>
-                                    <th>profit</th>
+
                                     <th style={{ textAlign: 'center' }}>Action</th>
                                 </tr>
                             </thead>
@@ -145,14 +153,13 @@ export function ProductList() {
                                         <td>{item.quantity}</td>
                                         <td>₹ {item.purchaseRate}</td>
                                         <td>₹ {item.sellingRate}</td>
-                                        
-                                        <td>{item.Discond} %</td>
-                                        <td>₹ {item.profit}</td>
+
+
                                         <td>
-                                            <div className="actions" style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                                                <i class="bi bi-eye-fill"></i>
-                                                <i className="bi bi-pencil-fill"></i>
-                                                <i className="fa-solid fa-trash"></i>
+                                            <div className="actions" style={{}}>
+                                                <i class="bi bi-eye-fill" onClick={() => SetTab('ProductView')}></i>
+                                                <i className="bi bi-pencil-fill" ></i>
+                                                <i className="fa-solid fa-trash" onClick={()=>setDelete(true)}></i>
                                             </div>
                                         </td>
                                     </tr>
@@ -166,6 +173,7 @@ export function ProductList() {
                         <div>Designed & Developed By <span style={{ color: '#52ad0a' }}>Dreams</span></div>
                     </div>
                 </div>
+                {IsDelete==true?<DeletionModal setDelete={setDelete}/>:''}
             </main>
         </>
     );

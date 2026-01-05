@@ -380,6 +380,39 @@
     font-weight: bold;
 }
 
+.Product-List .actions {
+    display: flex;
+    justify-content: center;
+    gap: '10px';
+    /* background-color: firebrick; */
+}
+
+.Product-List .actions i {
+   padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #f1f5f9;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bi-eye-fill:hover {
+    color: blue;
+}
+
+.bi-pencil-fill:hover {
+    color: #52ad0a;
+    background: #dbeafe;
+}
+
+.fa-trash:hover {
+    color: red;
+    background: #fee2e2;
+}
+
 /* ===============================
     MOBILE ADJUSTMENTS
 ================================ */

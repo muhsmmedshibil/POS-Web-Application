@@ -1,129 +1,125 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import * as FA6 from 'react-icons/fa6';
+import { IoClose } from "react-icons/io5";
+import './CategoryAdd.css';
 
-// 1. Updated Keywords for your 3 Categories
-const PRODUCT_KEYWORDS = [
-  'Mobile', 'Tablet', 'Watch', 'Laptop', 'Gem', 'Gift', 'Cart', 'Bag', 
-  'Tag', 'Box', 'Truck', 'Camera', 'Headphones', 'CreditCard', 'Wallet'
-];
-
-const FOOD_KEYWORDS = [
-  'Apple', 'Carrot', 'Lemon', 'Leaf', 'Pepper', 'Bread', 'Burger', 
-  'Pizza', 'Bowl', 'Mug', 'Glass', 'IceCream', 'Cake', 'Egg', 'Fish', 'Seedling'
-];
-
-const TOY_KEYWORDS = [
-  'Gamepad', 'Puzzle', 'Robot', 'Ghost', 'Chess', 'Dice', 'CarSide', 
-  'PlaneUp', 'Horse', 'Shapes', 'Train', 'Rocket'
-];
-
-// 2. Filter and Map the icons
+// ... (Keywords lists remain the same as previous)
 const iconOptions = Object.keys(FA6)
-  .map((key) => {
-    const cleanName = key.replace('Fa', '');
-    let category = null;
+  .map((key) => ({ value: key, icon: FA6[key], category: 'All' })) // Simplified for the demo grid
+  .slice(0, 100); // Limiting for performance in this example
 
-    if (FOOD_KEYWORDS.some(word => cleanName.includes(word))) category = 'Fruits & Vegetables';
-    else if (PRODUCT_KEYWORDS.some(word => cleanName.includes(word))) category = 'Products & Jewelry';
-    else if (TOY_KEYWORDS.some(word => cleanName.includes(word))) category = 'Toys & Games';
+const CategoryAdd = ({ setAddform, onClose }) => {
+  const [formData, setFormData] = useState({ name: '', description: '', icon: '' });
 
-    return {
-      value: key,
-      label: cleanName,
-      icon: FA6[key],
-      category: category
-    };
-  })
-  .filter(option => option.category !== null)
-  .sort((a, b) => a.label.localeCompare(b.label));
+  // if (!isOpen) return null;
 
-// 3. Group the options
-const groupedOptions = [
-  {
-    label: '🧸 Toys & Games',
-    options: iconOptions.filter(opt => opt.category === 'Toys & Games')
-  },
-  {
-    label: '📦 Products & Jewelry',
-    options: iconOptions.filter(opt => opt.category === 'Products & Jewelry')
-  },
-  {
-    label: '🍎 Fruits & Vegetables',
-    options: iconOptions.filter(opt => opt.category === 'Fruits & Vegetables')
-  }
-];
-
-const CategoryAdd = () => {
-  const [selectedIcon, setSelectedIcon] = useState(null);
-
-  const formatOptionLabel = ({ label, icon: Icon }) => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-      <Icon style={{ minWidth: '18px' }} />
-      <span style={{ fontSize: '14px' }}>{label}</span>
+  // Render ONLY the icon
+  const formatOptionLabel = ({ icon: Icon }) => (
+    <div className="icon-box-item">
+      <Icon size={18} />
     </div>
   );
 
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      background: 'rgba(255, 255, 255, 0.05)',
+      borderColor: state.isFocused ? '#00f2ad' : 'rgba(255, 255, 255, 0.1)',
+      borderRadius: '12px',
+      padding: '4px',
+      boxShadow: state.isFocused ? '0 0 15px rgba(0, 242, 173, 0.2)' : 'none',
+      '&:hover': { borderColor: '#00f2ad' }
+    }),
+    menu: (base) => ({
+      ...base,
+      background: '#1a1d26',
+      borderRadius: '16px',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      padding: '10px',
+      width: '280px',
+      right: 0,
+      boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+    }),
+    menuList: (base) => ({
+      ...base,
+      display: 'grid',
+      gridTemplateColumns: 'repeat(5, 1fr)', // 5 icons across for a tighter look
+      gap: '8px',
+    }),
+    option: (base, state) => ({
+      ...base,
+      background: state.isFocused ? 'rgba(0, 242, 173, 0.15)' : 'transparent',
+      borderRadius: '8px',
+      color: state.isFocused ? '#00f2ad' : '#8892b0',
+      padding: '12px',
+      display: 'flex',
+      justifyContent: 'center',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease'
+    }),
+    input: (base) => ({ ...base, color: 'white' }),
+    singleValue: (base) => ({ ...base, display: 'flex', justifyContent: 'center' })
+  };
+
   return (
-    <div style={{ width: '400px', margin: '40px auto', fontFamily: 'system-ui, sans-serif' , position:'fixed',top:'0'}}>
-      <label style={{ fontWeight: '600', display: 'block', marginBottom: '10px', color: '#374151' }}>
-        Select Category Icon:
-      </label>
-
-      <Select
-        options={groupedOptions}
-        getOptionLabel={formatOptionLabel}
-        onChange={(option) => setSelectedIcon(option)}
-        placeholder="Search (e.g. Robot, Apple, Watch...)"
-        isClearable
-        styles={{
-          groupHeading: (base) => ({
-            ...base,
-            backgroundColor: '#f3f4f6',
-            color: '#1f2937',
-            fontWeight: 'bold',
-            padding: '8px 12px',
-          }),
-          control: (base) => ({
-            ...base,
-            borderRadius: '8px',
-            borderColor: '#d1d5db'
-          })
-        }}
-      />
-
-      {selectedIcon && (
-        <div style={{ 
-          marginTop: '20px', 
-          padding: '24px', 
-          textAlign: 'center', 
-          border: '2px solid #eff6ff', 
-          borderRadius: '16px',
-          backgroundColor: '#f8fafc'
-        }}>
-          <div style={{ 
-            display: 'inline-block', 
-            padding: '15px', 
-            backgroundColor: '#fff', 
-            borderRadius: '50%', 
-            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' 
-          }}>
-            <selectedIcon.icon size={40} color="#2563eb" />
+    <div className="premium-overlay" onClick={onClose}>
+      <div className="premium-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="glow-edge" />
+        
+        <div className="modal-content">
+          <div className="modal-header">
+            <div>
+              <h3>Create Category</h3>
+              <p>Organize your items with style</p>
+            </div>
+            <button className="close-btn"  onClick={()=>setAddform(false)}><IoClose /></button>
           </div>
-          <h4 style={{ marginTop: '15px', marginBottom: '4px', color: '#1e293b' }}>{selectedIcon.label}</h4>
-          <span style={{ 
-            fontSize: '11px', 
-            backgroundColor: '#dbeafe', 
-            color: '#1e40af', 
-            padding: '2px 8px', 
-            borderRadius: '12px',
-            textTransform: 'uppercase',
-            fontWeight: 'bold'
-          }}>
-            {selectedIcon.category}
-          </span>
+
+          <div className="modal-body">
+            <div className="input-row">
+              <div className="field flex-3">
+                <label>Category Name</label>
+                <input 
+                  placeholder="e.g. Luxury Watches" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
+              </div>
+              
+              <div className="field flex-1">
+                <label>Icon</label>
+                <Select
+                  options={iconOptions}
+                  getOptionLabel={formatOptionLabel}
+                  styles={customStyles}
+                  isSearchable={true}
+                  placeholder=""
+                  components={{ IndicatorSeparator: () => null }}
+                  onChange={(opt) => setFormData({...formData, icon: opt.value})}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label>Description</label>
+              <textarea 
+                rows="3" 
+                placeholder="What belongs in this category?"
+                value={formData.description}
+                onChange={(e) => setFormData({...formData, description: e.target.value})}
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="modal-footer">
+            <button className="cancel-link" onClick={()=>setAddform(false)}>Discard</button>
+            <button className="submit-glow-btn" onClick={() => console.log(formData)}>
+              Save Category
+            </button>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
