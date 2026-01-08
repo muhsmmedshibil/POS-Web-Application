@@ -2,7 +2,7 @@
   "name": "front-end",
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://muhsmmedshibil.github.io/POS-Web-Application",
+  "homepage": "https://muhsmmedshibil.github.io/POS-Web-Application/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
