@@ -1,6 +1,6 @@
 import './NavBar.css'
 
-export function NavBar({ head, text, button, buttonAction,iconAction }) {
+export function NavBar({ head, text, button, buttonAction, iconAction }) {
     return (
         <div className="NavBar">
             <div className="header-title">
@@ -10,7 +10,10 @@ export function NavBar({ head, text, button, buttonAction,iconAction }) {
                     <p>{text}</p>
                 </div>
             </div>
-            <button onClick={buttonAction} className="btn-primary">{button}</button>
+            <button onClick={buttonAction} className="btn-primary">
+                <i class="bi bi-plus-lg"></i> 
+                <span>{button}</span>
+            </button>
         </div>
     )
 }

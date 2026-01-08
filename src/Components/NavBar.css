@@ -17,32 +17,32 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: helps visibility */
     /* margin-bottom: 20px; */
 }
-.header-title{
+.NavBar .header-title{
     display: flex;
     align-items: center;
     
 }
-.header-title i{
+.NavBar .header-title i{
     font-size: 1.5rem;
     cursor: pointer;
     color: gray;
     padding-left: 20px;
 }
-.header-title h1 {
+.NavBar .header-title h1 {
     font-size: 1.1rem;
     margin: 0;
     color: #2c3e50;
     padding: 0 20px;
 }
 
-.header-title p {
+.NavBar .header-title p {
     font-size: 0.75rem;
     margin: 0;
     color: #888;
     padding: 0 20px;
 }
 
-.btn-primary {
+.NavBar .btn-primary {
     background: #52ad0a;
     color: #fff;
     border: none;
@@ -50,7 +50,15 @@
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
      /* Prevents button text from wrapping */
+}
+.NavBar .btn-primary i{
+    font-size: 15px;
+    font-weight: 600;
 }
 
 /* --- Responsive Breakpoints --- */
@@ -61,24 +69,27 @@
         padding: 20px 20px 20px 100px; 
     }
     
-    .header-title h1 {
+    .NavBar .header-title h1 {
         font-size: 1.25rem;
     }
     
-    .header-title p {
+    .NavBar .header-title p {
         font-size: 0.85rem;
     }
 
-    .btn-primary {
+    .NavBar .btn-primary {
         padding: 12px 24px;
     }
 }
 
 /* Small Mobile Adjustments */
 @media (max-width: 480px) {
-    .btn-primary {
+    .NavBar .btn-primary {
          width: 50px;
          height: 50px;
          border-radius: 50%;
+    }
+    .NavBar .btn-primary span{
+        display: none;
     }
 }
