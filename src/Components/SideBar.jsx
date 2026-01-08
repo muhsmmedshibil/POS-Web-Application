@@ -1,6 +1,6 @@
 import './SideBar.css'
 
-export function SideBar({ SetTab, tab }) {
+export function SideBar({ SetTab, tab,onLogout }) {
   return (
     <nav className="sidebar">
       <div className="logo">
@@ -39,8 +39,8 @@ export function SideBar({ SetTab, tab }) {
         </div>
       </div>
 
-      <div class="logout">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      <div class="logout" >
+        <i class="fa-solid fa-arrow-right-from-bracket" onClick={()=>onLogout()}></i>
       </div>
     </nav>
   );

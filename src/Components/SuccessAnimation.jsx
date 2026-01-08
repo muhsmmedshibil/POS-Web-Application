@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import './SuccessAnimation.css';
 
-export const SuccessAnimation = ({setStatus,setCartItems}) => {
-    
-
+export const SuccessAnimation = ({ setStatus, setCartItems }) => {
+    const [date] = useState(new Date().toLocaleDateString());
     return (
         <div className="successContainer">
             <div className='sectionSuccess'>
@@ -28,17 +27,17 @@ export const SuccessAnimation = ({setStatus,setCartItems}) => {
                 </p>
 
                 <p className="delivery-info">
-                    Today Date: <span>{Date.now()}</span>
+                    Today Date: <span>{date}</span>
                 </p>
 
                 <a href="#" className="track-link">Show This Bill</a>
 
-                <button className="btn-continue" onClick={()=>(setStatus('bill'),setCartItems([]) )}>
-                     Back to Sale
+                <button className="btn-continue" onClick={() => (setStatus('bill'), setCartItems([]))}>
+                    Back to Sale
                 </button>
             </div>
 
-           
+
         </div>
     );
 };

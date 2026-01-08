@@ -4,8 +4,8 @@ import './ProductAddForm.css';
 import { NavBar } from './NavBar';
 import { categories } from '../data/Products';
 
-export function ProductAddForm({SetTab}) {
-     function iconAction(){
+export function ProductAddForm({ SetTab }) {
+    function iconAction() {
         SetTab('productList')
     }
     const initialState = {
@@ -16,14 +16,14 @@ export function ProductAddForm({SetTab}) {
         purchaseRate: '',
         sellingRate: '',
         description: '',
-        category: '', 
+        category: '',
         image: null
     };
 
     const [productData, setProductData] = useState(initialState);
     const [preview, setPreview] = useState(null);
     const [errors, setErrors] = useState({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     // ID validation states
     const [isIdUnique, setIsIdUnique] = useState(null);
@@ -39,17 +39,17 @@ export function ProductAddForm({SetTab}) {
         setCheckingId(true);
         try {
             const existingSKUs = ['SKU-100', 'SKU-200', 'JACKET-01'];
-            
+
             setTimeout(() => {
                 const isUnique = !existingSKUs.includes(sku.toUpperCase());
                 setIsIdUnique(isUnique);
                 setCheckingId(false);
-                
+
                 if (!isUnique) {
                     setErrors(prev => ({ ...prev, id: "This ID already exists in inventory" }));
                 }
             }, 600);
-        } catch (err) {
+        } catch {
             setCheckingId(false);
         }
     };
@@ -67,7 +67,7 @@ export function ProductAddForm({SetTab}) {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setProductData(prev => ({ ...prev, [name]: value }));
-        
+
         if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
         if (name === 'id') setIsIdUnique(null);
     };
@@ -108,7 +108,7 @@ export function ProductAddForm({SetTab}) {
         e.preventDefault();
         if (!validate()) return;
 
-        setIsSubmitting(true);
+
 
         // 1. Create FormData object
         const formData = new FormData();
@@ -130,7 +130,7 @@ export function ProductAddForm({SetTab}) {
             await axios.post('https://api.example.com/products', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            
+
             alert("Product added successfully!");
             setProductData(initialState);
             setPreview(null);
@@ -138,15 +138,13 @@ export function ProductAddForm({SetTab}) {
         } catch (error) {
             console.error("API Error:", error);
             alert("Error adding product.");
-        } finally {
-            setIsSubmitting(false);
         }
     };
-   
+
 
     return (
         <div className="ProductAddcontainer">
-            <NavBar head={'Add New Product'} text={'Create New  Product for very simple'} button={' Add Product'} buttonAction={handleSubmit} iconAction ={iconAction}/>
+            <NavBar head={'Add New Product'} text={'Create New  Product for very simple'} button={' Add Product'} buttonAction={handleSubmit} iconAction={iconAction} />
 
             {/* <header className="header-section">
                 <h2><i className="fas fa-box"></i> New Inventory Item</h2>
@@ -167,23 +165,23 @@ export function ProductAddForm({SetTab}) {
                         <div className="pricing-grid">
                             <div className="form-group">
                                 <label>Product Name*</label>
-                                <input 
-                                    type="text" name="name" 
+                                <input
+                                    type="text" name="name"
                                     className={errors.name ? "error-border" : ""}
-                                    value={productData.name} 
-                                    placeholder='Winter Jacket' onChange={handleInputChange} 
+                                    value={productData.name}
+                                    placeholder='Winter Jacket' onChange={handleInputChange}
                                 />
                                 {errors.name && <span className="err-msg">{errors.name}</span>}
                             </div>
-                            
+
                             <div className="form-group">
                                 <label>Product ID / SKU*</label>
                                 <div className="input-icon-wrapper">
-                                    <input 
-                                        type="text" name="id" 
+                                    <input
+                                        type="text" name="id"
                                         className={`${errors.id ? "error-border" : ""} ${isIdUnique ? "success-border" : ""}`}
-                                        value={productData.id} 
-                                        placeholder='SKU-001' onChange={handleInputChange} 
+                                        value={productData.id}
+                                        placeholder='SKU-001' onChange={handleInputChange}
                                     />
                                     <div className="validation-loader">
                                         {checkingId && <i className="fas fa-circle-notch fa-spin"></i>}
@@ -210,19 +208,19 @@ export function ProductAddForm({SetTab}) {
                             </div>
                             <div className="form-group">
                                 <label>Purchase Rate ($)*</label>
-                                <input 
-                                    type="number" name="purchaseRate" 
+                                <input
+                                    type="number" name="purchaseRate"
                                     className={errors.purchaseRate ? "error-border" : ""}
-                                    value={productData.purchaseRate} placeholder='0.00' onChange={handleInputChange} 
+                                    value={productData.purchaseRate} placeholder='0.00' onChange={handleInputChange}
                                 />
                                 {errors.purchaseRate && <span className="err-msg">{errors.purchaseRate}</span>}
                             </div>
                             <div className="form-group">
                                 <label>Selling Rate ($)*</label>
-                                <input 
-                                    type="number" name="sellingRate" 
+                                <input
+                                    type="number" name="sellingRate"
                                     className={errors.sellingRate ? "error-border" : ""}
-                                    value={productData.sellingRate} placeholder='0.00' onChange={handleInputChange} 
+                                    value={productData.sellingRate} placeholder='0.00' onChange={handleInputChange}
                                 />
                                 {errors.sellingRate && <span className="err-msg">{errors.sellingRate}</span>}
                             </div>
@@ -230,11 +228,11 @@ export function ProductAddForm({SetTab}) {
 
                         <div className="form-group">
                             <label>Product Description*</label>
-                            <textarea 
-                                name="description" 
+                            <textarea
+                                name="description"
                                 className={errors.description ? "error-border" : ""}
-                                value={productData.description} 
-                                placeholder="Describe the material..." 
+                                value={productData.description}
+                                placeholder="Describe the material..."
                                 onChange={handleInputChange}
                             ></textarea>
                             {errors.description && <span className="err-msg">{errors.description}</span>}
@@ -256,7 +254,7 @@ export function ProductAddForm({SetTab}) {
                                 </div>
                             ) : (
                                 <div className="preview-container" >
-                                    <img src={preview} alt="Preview" className="img-preview"  />
+                                    <img src={preview} alt="Preview" className="img-preview" />
                                     <button className="btn-remove" type="button" onClick={removeImage}>
                                         <i className="fas fa-times"></i>
                                     </button>
@@ -271,9 +269,9 @@ export function ProductAddForm({SetTab}) {
                         <div className="form-group">
                             <label>Category</label>
                             <select name="category" value={productData.category} onChange={handleInputChange}>
-                               {categories.map((item, index)=>(
-                                 <option key={index} value={item.name}>{item.name}</option>
-                               ))}
+                                {categories.map((item, index) => (
+                                    <option key={index} value={item.name}>{item.name}</option>
+                                ))}
                             </select>
                         </div>
                     </section>

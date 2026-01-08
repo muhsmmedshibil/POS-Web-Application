@@ -15,9 +15,9 @@ const CategoryAdd = ({ setAddform, onClose }) => {
   // if (!isOpen) return null;
 
   // Render ONLY the icon
-  const formatOptionLabel = ({ icon: Icon }) => (
+  const formatOptionLabel = ({ icon: IconCmp }) => ( // eslint-disable-line no-unused-vars
     <div className="icon-box-item">
-      <Icon size={18} />
+      <IconCmp size={18} />
     </div>
   );
 
@@ -66,27 +66,27 @@ const CategoryAdd = ({ setAddform, onClose }) => {
     <div className="premium-overlay" onClick={onClose}>
       <div className="premium-modal" onClick={(e) => e.stopPropagation()}>
         <div className="glow-edge" />
-        
+
         <div className="modal-content">
           <div className="modal-header">
             <div>
               <h3>Create Category</h3>
               <p>Organize your items with style</p>
             </div>
-            <button className="close-btn"  onClick={()=>setAddform(false)}><IoClose /></button>
+            <button className="close-btn" onClick={() => setAddform(false)}><IoClose /></button>
           </div>
 
           <div className="modal-body">
             <div className="input-row">
               <div className="field flex-3">
                 <label>Category Name</label>
-                <input 
-                  placeholder="e.g. Luxury Watches" 
+                <input
+                  placeholder="e.g. Luxury Watches"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
-              
+
               <div className="field flex-1">
                 <label>Icon</label>
                 <Select
@@ -96,24 +96,24 @@ const CategoryAdd = ({ setAddform, onClose }) => {
                   isSearchable={true}
                   placeholder=""
                   components={{ IndicatorSeparator: () => null }}
-                  onChange={(opt) => setFormData({...formData, icon: opt.value})}
+                  onChange={(opt) => setFormData({ ...formData, icon: opt.value })}
                 />
               </div>
             </div>
 
             <div className="field">
               <label>Description</label>
-              <textarea 
-                rows="3" 
+              <textarea
+                rows="3"
                 placeholder="What belongs in this category?"
                 value={formData.description}
-                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               ></textarea>
             </div>
           </div>
 
           <div className="modal-footer">
-            <button className="cancel-link" onClick={()=>setAddform(false)}>Discard</button>
+            <button className="cancel-link" onClick={() => setAddform(false)}>Discard</button>
             <button className="submit-glow-btn" onClick={() => console.log(formData)}>
               Save Category
             </button>

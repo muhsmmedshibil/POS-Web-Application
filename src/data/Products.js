@@ -108,7 +108,7 @@ export const categories = [
   },
   {
     id: "CAT-002",
-    name: "Screen Protectors",
+    name: "Smartphone",
     description: "Tempered glass and film protectors to keep your screen scratch-free.",
     icon: "📲",
     createDate: "2026-01-03"
@@ -233,6 +233,7 @@ export const phoneProducts = [
     Discond: 5,
     createdDate: "2025-01-04",
   },
+  
   {
     productID: 'SMP5',
     productName: "OnePlus Nord CE 3",
@@ -266,7 +267,7 @@ export const phoneProducts = [
     productID: "WCH1",
     productName: "Galaxy Watch 3 LTE",
     image: "https://media.flixcar.com/webp/synd-asset/Samsung-212085911-in-galaxy-watch7-l305-sm-l305fzeains-542367108--Download-Source--zoom.png",
-    category: "Watch",
+    category: "Smartwatch Accessories",
     purchaseRate: 30000,
     sellingRate: 38000,
     profit: 8000,
@@ -280,7 +281,7 @@ export const phoneProducts = [
     productID: "WCH2",
     productName: "Galaxy Watch 3 GPS ",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJHzX93xo5QRlOakLUt6LAEBKJClmRZd_0FA&s",
-    category: "Watch",
+    category: "Smartwatch Accessories",
     purchaseRate: 28000,
     sellingRate: 35000,
     profit: 7000,
@@ -294,14 +295,14 @@ export const phoneProducts = [
     productID: "WCH3",
     productName: "Galaxy Watch3 (B) ",
     image: "https://m.media-amazon.com/images/I/71Y6gpDqPdL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg",
-    category: "Watch",
+    category: "Smartwatch Accessories",
     purchaseRate: 29000,
     sellingRate: 36000,
     profit: 7000,
     unit: "pcs",
     quantity: 1,
-    totalStock: 8,
-    Discount: 0,
+    totalStock: 1,
+    Discount: 100,
     createdDate: "2025-01-10"
 }
 

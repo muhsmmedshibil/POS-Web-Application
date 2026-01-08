@@ -45,24 +45,6 @@ export const PrintingAnimation = ({setStatus,setCartItems}) => {
                     <SuccessAnimation  setCartItems={setCartItems}
                     setStatus={setStatus}/>
                     
-                    {/* <h2 style={{ color: '#333', margin: '0 0 20px 0' }}>Sale Successfully</h2>
-                    
-                    <button 
-                        onClick={()=>(setStatus('bill'),setCartItems([]) )}
-                        style={{
-                            backgroundColor: '#007bff',
-                            color: 'white',
-                            border: 'none',
-                            padding: '12px 25px',
-                            borderRadius: '5px',
-                            fontSize: '16px',
-                            cursor: 'pointer',
-                            transition: 'background 0.3s'
-                        }}
-                        
-                    >
-                        Back to Sale
-                    </button> */}
                 </div>
             )}
         </div>

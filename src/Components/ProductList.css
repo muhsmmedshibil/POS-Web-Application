@@ -380,14 +380,14 @@
     font-weight: bold;
 }
 
-.Product-List .actions {
+ .actions {
     display: flex;
     justify-content: center;
     gap: '10px';
     /* background-color: firebrick; */
 }
 
-.Product-List .actions i {
+ .actions i {
    padding: 8px;
     border: none;
     border-radius: 6px;

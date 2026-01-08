@@ -140,10 +140,8 @@
 
 /* --- Charts Section --- */
 .dashboard .charts-row {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
+    display: block; /* Removed 2-column grid */
+  margin-bottom: 30px;
 }
 
 .dashboard .chart-box {

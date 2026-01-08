@@ -1,81 +1,83 @@
 import { useState } from 'react';
 import './PaymentSelect.css';
 
-export function PaymentSelect({ netPayable, setStatus }) {
-    // Handler for the payment button
+export function PaymentSelect({ netPayable, setStatus,selectedMethod, setSelectedMethod }) {
+    // 1. States for selection and validation
+    
+    const [showError, setShowError] = useState(false);
+
+    const formattedTotal = netPayable.toFixed(0);
+
+    // 2. Requirement Logic
     const handlePayment = () => {
+        if (!selectedMethod) {
+            setShowError(true); // Show the popup
+            return;
+        }
+        
+        console.log("Method selected:", selectedMethod);
         if (setStatus) setStatus('receipt');
     };
 
-    const [pymentSelect, setPymentSelect] = useState({})
+    // 3. Payment Methods Config for cleaner code
+    const methods = [
+        { id: 'UPI', label: 'UPI', icon: '📱' },
+        { id: 'Cash', label: 'Cash', icon: '💵' },
+        { id: 'CreditCard', label: 'Credit Card', icon: '💳' },
+        { id: 'DebitCard', label: 'Debit Card', icon: '💳' },
+        { id: 'Wallet', label: 'Wallet', icon: '👛' },
+        { id: 'Other', label: 'Other', icon: '🏛️' },
+    ];
 
     return (
         <div className="payment-container">
-
+            {/* Simple Popup/Modal */}
+            {showError && (
+                <div className="modal-overlay">
+                    <div className="error-popup">
+                        <i className="bi bi-exclamation-circle" style={{fontSize: '2rem', color: '#ff4d4f'}}></i>
+                        <p>Please select a payment method before proceeding.</p>
+                        <button onClick={() => setShowError(false)}>Got it</button>
+                    </div>
+                </div>
+            )}
 
             <div className="header">
                 <div className="header-left">
-                    {/* <span className="back-arrow">←</span>  */}
-                    <i class="bi bi-arrow-left back-arrow" onClick={()=>setStatus('bill')}></i>
+                    <i className="bi bi-arrow-left back-arrow" onClick={() => setStatus('bill')}></i>
                     <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}> Select Payment</span>
                 </div>
-                {/* <div className="split-container">
-                    <label className="switch">
-                        <input type="checkbox" defaultChecked />
-                        <span className="slider"></span>
-                    </label>
-                    <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Split</span>
-                </div> */}
             </div>
 
             <div className="amount-section">
                 <div className="total-label">Total Amount</div>
-                <div className="total-value">₹{netPayable.toFixed(2)}</div>
-                {/* <div className="sub-amount">42.88</div> */}
+                <div className="total-value">₹{formattedTotal}</div>
             </div>
 
             <div className="payment-grid">
-                <div className={`payment-card ${pymentSelect.cash == null ? '' : 'active'}`}   onClick={() => setPymentSelect({ cash: (netPayable.toFixed(2)) })}>
-                    <span className="icon">💵</span>
-                    <span className="card-label">Cash</span>
-                    <span className="card-amount">${pymentSelect.cash == null ? '0.00' : pymentSelect.cash}</span>
-                </div>
-                <div className={`payment-card ${pymentSelect.CreditCard == null ? '' : 'active'}`} onClick={() => setPymentSelect({ CreditCard: (netPayable.toFixed(2)) })}>
-                    <span className="icon">💳</span>
-                    <span className="card-label">Credit Card</span>
-                    <span className="card-amount">${pymentSelect.CreditCard == null ? '0.00' : pymentSelect.CreditCard}</span>
-                </div>
-                <div className={`payment-card ${pymentSelect.DebitCard == null ? '' : 'active'}`}  onClick={() => setPymentSelect({ DebitCard: (netPayable.toFixed(2)) })}>
-                    <span className="icon">💳</span>
-                    <span className="card-label">Debit Card</span>
-                    <span className="card-amount">${pymentSelect.DebitCard == null ? '0.00' : pymentSelect.DebitCard}</span>
-                </div>
-                <div className={`payment-card ${pymentSelect.Other == null ? '' : 'active'}`} onClick={() => setPymentSelect({ Other: (netPayable.toFixed(2)) })}>
-                    <span className="icon">🏛️</span>
-                    <span className="card-label">Other</span>
-                    <span className="card-amount">${pymentSelect.Other == null ? '0.00' : pymentSelect.Other}</span>
-                </div>
-                <div className={`payment-card ${pymentSelect.Wallet == null ? '' : 'active'}`} onClick={() => setPymentSelect({ Wallet: (netPayable.toFixed(2)) })}>
-                    <span className="icon">👛</span>
-                    <span className="card-label">Wallet</span>
-                    <span className="card-amount">${pymentSelect.Wallet == null ? '0.00' : pymentSelect.Wallet}</span>
-                </div>
+                {methods.map((m) => (
+                    <div 
+                        key={m.id}
+                        className={`payment-card ${selectedMethod === m.id ? 'active' : ''}`} 
+                        onClick={() => {
+                            setSelectedMethod(m.id);
+                            setShowError(false); 
+                        }}
+                    >
+                        <span className="icon">{m.icon}</span>
+                        <span className="card-label">{m.label}</span>
+                        <span className="card-amount">
+                            ₹{selectedMethod === m.id ? formattedTotal : '0.00'}
+                        </span>
+                    </div>
+                ))}
             </div>
 
             <div className="footer">
-                <button
-                    className="pay-btn"
-                    onClick={handlePayment}
-                >
+                <button className="pay-btn" onClick={handlePayment}>
                     Make Payment
                 </button>
-                {/* <button 
-                    className=" btn-secondary" 
-                    
-                >
-                   Go Back 
-                </button> */}
             </div>
         </div>
     );
-} 
+}

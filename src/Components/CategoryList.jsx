@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { categories } from '../data/Products';
 import './CategoryList.css';
 import { NavBar } from './NavBar';
@@ -7,12 +7,9 @@ import { Search, Filter, Eye, Pencil, Trash2 } from 'lucide-react';
 import CategoryAdd from './CategoryAdd';
 import { DeletionModal } from './DeletionModal';
 
-export function CategoryList() {
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+export function CategoryList({ SetTab }) {
+    const [isDesktop] = useState(window.innerWidth > 1024);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const doughnutChartRef = useRef(null);
-    const polarChartRef = useRef(null);
 
     // Filter categories based on search
     const filteredCategories = categories.filter(cat =>
@@ -20,9 +17,11 @@ export function CategoryList() {
     );
 
     const [addForm, setAddform] = useState(false)
-    function addCategory(){
+    function addCategory() {
         setAddform(true)
     }
+
+    const [IsDelete, setDelete] = useState(false);
 
     return (
         <>
@@ -71,10 +70,12 @@ export function CategoryList() {
                                             <td><div className="table-icon-box blue">{item.icon}</div></td>
                                             <td><strong>{item.name}</strong></td>
                                             <td>{item.description}</td>
-                                            <td className="actions">
-                                                <i class="bi bi-eye-fill action-btn" onClick={() => ''}></i>
-                                                <button className="action-btn edit"><Pencil size={14} /></button>
-                                                <button className="action-btn delete"><Trash2 size={14} /></button>
+                                            <td >
+                                                <div className="actions" style={{}}>
+                                                    <i class="bi bi-eye-fill" onClick={() => SetTab('ProductView')}></i>
+                                                    <i className="bi bi-pencil-fill" ></i>
+                                                    <i className="fa-solid fa-trash" onClick={() => setDelete(true)}></i>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
@@ -102,7 +103,7 @@ export function CategoryList() {
                                 </div>
 
                             ))}
-                           
+
                         </div>
                     )}
 
@@ -110,7 +111,8 @@ export function CategoryList() {
 
                 </div>
             </div>
-             {addForm == true ? <CategoryAdd setAddform={setAddform}  /> : ''}
+            {addForm == true ? <CategoryAdd setAddform={setAddform} /> : ''}
+            {IsDelete == true ? <DeletionModal setDelete={setDelete} /> : ''}
         </>
     );
 }

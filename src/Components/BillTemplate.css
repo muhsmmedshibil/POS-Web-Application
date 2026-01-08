@@ -1,31 +1,53 @@
+/* Container and Layout */
 .receipt {
-    padding: 20px;
+    /* padding: 20px; */
     position: relative;
+    max-width: 450px; /* Limits width on desktop */
+    margin: 0 auto;   /* Centers receipt in the parent container */
+    font-family: 'Courier New', Courier, monospace; /* Classic receipt font */
 }
 
-/* Header */
- 
+/* Header Section */
 .receipt .cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 5px;
+    /* background-color: red; */
 }
 
-/* Bill box */
+.receipt .cart-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.receipt .cart-header i {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* The Paper Bill Section */
 .receipt .billsection {
-    border: 1px solid rgb(185, 185, 185);
+    border: 1px solid rgb(221, 221, 221);
     border-radius: 5px;
-    height: 400px;
+    background-color: #fff;
+    min-height: 400px;
+    max-height: 70vh; /* Responsive height for mobile */
     overflow-y: auto;
-    scrollbar-width: none;
-    padding: 30px;
+    scrollbar-width: none; /* Firefox */
+    padding: 25px;
+    /* box-shadow: 0 4px 10px rgba(0,0,0,0.05); */
+}
+
+.receipt .billsection::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 /* Typography */
- .receipt h1 {
+.receipt h1 {
     text-align: center;
-    font-size: 26px;
+    font-size: 24px;
     margin: 10px 0;
     letter-spacing: 2px;
 }
@@ -34,98 +56,174 @@
     text-align: center;
     letter-spacing: 2px;
     margin: 5px 0;
+    color: #555;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .receipt .flex {
     display: flex;
     justify-content: space-between;
-    margin: 6px 0;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.receipt .gap-2 {
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .receipt .bold {
     font-weight: 900;
+    font-size: 1.1rem;
 }
 
 /* Dividers */
 .receipt hr.dashed {
+    border: none;
     border-top: 2px dashed #000;
     margin: 15px 0;
 }
 
 .receipt hr.double {
+    border: none;
     border-top: 4px double #000;
     margin: 15px 0;
 }
 
-/* Item rows */
+/* Item Grid System */
 .receipt .item-row {
     display: grid;
-    grid-template-columns: 30px 1fr 50px 70px;
-    gap: 6px;
+    /* Responsive columns: #, Name (expands), Qty, Price */
+    grid-template-columns: 25px 1fr 40px 70px; 
+    gap: 8px;
     font-size: 13px;
-    margin: 6px 0;
+    margin: 10px 0;
+    align-items: start;
 }
 
 .receipt .item-row span {
     text-align: right;
 }
-
+.receipt .item-row span:nth-child(1){
+    text-align: left;
+}
 .receipt .item-row span:nth-child(2) {
     text-align: left;
+    word-break: break-word; /* Prevents long names from breaking layout */
+}
+.receipt .item-row span:nth-child(3){
+    text-align: center;
+}
+.receipt .item-row span:nth-child(4){
+    text-align: center;
 }
 
 .receipt .item-row.header {
     font-weight: bold;
     border-bottom: 1px dashed #000;
-    padding-bottom: 5px;
-     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* background-color: red; */
+    padding-bottom: 8px;
+    padding-left: 0;
+    padding-right: 0;
+  /* background-color: red; */
+  display: grid;
+  /* gap: rem; */
+}
+.receipt .item-row.header span{
+    /* text-align: left; */
+}
+
+/* Discount Input Styling */
+.discount-input {
+    width: 70px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 5px;
+    text-align: right;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.add-discount-link {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 16px;
 }
 
 /* Barcode */
 .receipt .barcode {
-    margin-top: 30px;
-    height: 60px;
-    width: 100%;
+    margin: 30px auto 0;
+    height: 50px;
+    width: 80%;
     background: repeating-linear-gradient(90deg,
             #000,
-            #000 2px,
-            #fff 2px,
-            #fff 4px);
+            #000 1px,
+            #fff 1px,
+            #fff 3px,
+            #000 3px,
+            #000 4px);
 }
 
 .receipt .thanks {
     text-align: center;
-    margin: 20px 0 10px;
+    margin: 20px 0 5px;
     font-weight: bold;
+    font-size: 14px;
 }
 
-/* Actions */
+/* Action Buttons */
 .receipt .actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 2rem;
+    gap: 12px;
+    margin-top: 1.5rem;
 }
 
 .receipt .print-check {
-    font-size: 12px;
+    font-size: 13px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
+    cursor: pointer;
 }
 
 .receipt .btn {
     width: 100%;
-    background-color: var(--primary-red);
+    background-color: var(--primary-red); /* Using a standard red if variable isn't set */
     color: white;
     border: none;
-    padding: 15px;
-    border-radius: 4px;
+    padding: 14px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    margin: 5px 0;
+    transition: background 0.2s;
+}
+
+
+
+/* --- Responsive Media Queries --- */
+
+@media (max-width: 480px) {
+    .receipt {
+        padding: 10px;
+    }
+
+    .receipt .billsection {
+        padding: 15px;
+        min-height: 350px;
+    }
+
+    .receipt .item-row {
+        font-size: 12px;
+        grid-template-columns: 20px 1fr 35px 60px; /* Narrower for mobile */
+        gap: 4px;
+    }
+
+    .receipt h1 {
+        font-size: 20px;
+    }
 }

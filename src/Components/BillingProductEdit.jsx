@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./BillingProductEdit.css";
 
 const BillingProductEdit = ({ findBaseRate, setStatus, onAddToCart, editProductForBill }) => {
@@ -9,14 +9,12 @@ const BillingProductEdit = ({ findBaseRate, setStatus, onAddToCart, editProductF
   const productIdx = editProductForBill.index
 
   const [quantity, setQuantity] = useState(editProductForBill.prodictInfo.quantity);
-  const [discount, setDiscount] = useState(0);
+  const [discount] = useState(0);
   const [extra, setExtra] = useState(0);
-  const [price, setPrice] = useState(baseRate);
 
-  useEffect(() => {
-    const calculated = baseRate * quantity + Number(extra) - Number(discount);
-    setPrice(calculated >= 0 ? calculated : 0); // No negative price
-  }, [quantity, discount, extra, baseRate]);
+  const calculated = baseRate * quantity + Number(extra) - Number(discount);
+  const price = calculated >= 0 ? calculated : 0;
+
   findBaseRate(baseRate)
 
   const handleIncrement = () =>

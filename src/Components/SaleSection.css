@@ -120,8 +120,39 @@
 }
 
 .main-content .cat-card.active {
-    border-color: var(--primary-green);
-    background: #f1f9ec;
+    border-color: var(--primary-red);
+    /* background: #f1f9ec; */
+}
+/* Center the empty state message across the entire grid row */
+.no-products-container {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  width: 100%;
+}
+
+.no-products-content {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+}
+
+.no-products-content i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.no-products-content button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .main-content .cat-card i {
