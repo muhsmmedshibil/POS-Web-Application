@@ -9,6 +9,7 @@
     z-index: 100;
     height: 100vh;
     z-index: 10;
+    
 }
 
 .sidebar .logo {
@@ -94,6 +95,7 @@
         padding: 5px;
         border-right: none;
         border-top: 1px solid var(--border-color);
+        
     }
 
     .sidebar .logo,
@@ -158,7 +160,7 @@
         height: 120px;
         border-radius: 15px;
     }
-    
+
     .sidebar .product-card h3 {
         font-size: 13px;
     }

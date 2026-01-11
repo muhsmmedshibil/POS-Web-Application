@@ -35,7 +35,7 @@
 }
 
 .Product-List .btn-primary {
-    background: #52ad0a;
+    background: #4318FF;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -142,7 +142,7 @@
 
 .Product-List .c-fill {
     fill: none;
-    stroke: #52ad0a;
+    stroke: #4318FF;
     stroke-width: 4;
     stroke-linecap: round;
     stroke-dasharray: 60, 100;
@@ -166,7 +166,7 @@
 
 .Product-List .bar {
     flex: 1;
-    background: #52ad0a;
+    background: #4318FF;
     border-radius: 3px;
     opacity: 0.8;
 }
@@ -376,7 +376,7 @@
 }
 
 .Product-List .brand-text {
-    color: #52ad0a;
+    color: #4318FF;
     font-weight: bold;
 }
 

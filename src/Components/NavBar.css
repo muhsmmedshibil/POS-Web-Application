@@ -1,7 +1,7 @@
-/* Base Styles (Mobile First) */
-.NavBar {
+/* Core Styles */
+.top-navbar {
     width: 100%;
-    height: auto; 
+    height: auto;
     min-height: 80px;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -11,39 +11,81 @@
     top: 0;
     left: 0;
     /* padding: 10px 10px; Smaller padding for mobile */
-    box-sizing: border-box; /* Ensures padding doesn't add to width */
+    box-sizing: border-box;
+    /* Ensures padding doesn't add to width */
     z-index: 1;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: helps visibility */
-    /* margin-bottom: 20px; */
+    padding: 20px 20px  20px 100px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: helps visibility */
 }
-.NavBar .header-title{
+
+.menu-toggle {
+    display: none;
+    /* Hidden by default */
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text-dark, #333);
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    background: var(--bg-main, #f5f5f5);
+    padding: 10px 18px;
+    border-radius: 30px;
+    width: 300px;
+    transition: width 0.3s ease;
+}
+
+.nav-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 5px 5px 15px;
+    background: #fff;
+    border-radius: 50px;
+    border: 1px solid #eee;
+}
+ .header-title{
     display: flex;
     align-items: center;
     
 }
-.NavBar .header-title i{
+ .header-title i{
     font-size: 1.5rem;
     cursor: pointer;
     color: gray;
     padding-left: 20px;
 }
-.NavBar .header-title h1 {
+.header-title h1 {
     font-size: 1.1rem;
     margin: 0;
     color: #2c3e50;
     padding: 0 20px;
 }
 
-.NavBar .header-title p {
+ .header-title p {
     font-size: 0.75rem;
     margin: 0;
     color: #888;
     padding: 0 20px;
 }
-
-.NavBar .btn-primary {
-    background: #52ad0a;
+.btn-primary {
+    background: #4318FF;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -56,40 +98,63 @@
     gap: .5rem;
      /* Prevents button text from wrapping */
 }
-.NavBar .btn-primary i{
+.btn-primary i{
     font-size: 15px;
     font-weight: 600;
 }
 
-/* --- Responsive Breakpoints --- */
 
-/* Tablets and Desktops */
-@media (min-width: 768px) {
-    .NavBar {
-        padding: 20px 20px 20px 100px; 
-    }
-    
-    .NavBar .header-title h1 {
-        font-size: 1.25rem;
-    }
-    
-    .NavBar .header-title p {
-        font-size: 0.85rem;
-    }
 
-    .NavBar .btn-primary {
-        padding: 12px 24px;
-    }
+.user-name {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0;
 }
 
-/* Small Mobile Adjustments */
-@media (max-width: 480px) {
-    .NavBar .btn-primary {
-         width: 50px;
-         height: 50px;
-         border-radius: 50%;
+.user-role {
+    font-size: 11px;
+    color: var(--text-muted, #888);
+    margin: 0;
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* --- RESPONSIVE QUERIES --- */
+
+@media (max-width: 768px) {
+    .top-navbar {
+        padding: 10px 15px;
+        margin-bottom: 20px;
     }
-    .NavBar .btn-primary span{
+
+    .menu-toggle {
+        display: block;
+        /* Show menu icon on mobile */
+        margin-right: 15px;
+    }
+
+    .nav-search {
+        width: 150px;
+        /* Shrink search bar */
+    }
+
+    /* Hide user text labels on mobile to save space */
+    .user-info {
         display: none;
+    }
+
+    .user-pill {
+        padding: 5px;
+        border: none;
+        background: transparent;
+    }
+
+    .notification-icon {
+        display: none;
+        /* Optional: hide icons if screen is too small */
     }
 }

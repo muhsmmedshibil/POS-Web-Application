@@ -11,7 +11,12 @@ import './Home.css';
 
 function Home() {
   const [tab, SetTab] = useState('sale');
+  const [selectProduct,setSelectProduct] =useState({})
   const navigate = useNavigate();
+
+  function getSelectProduct (product){
+    setSelectProduct(product)
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn'); // Clear login state
@@ -27,10 +32,10 @@ function Home() {
 
       {tab === 'dashboard' && <Dashboard SetTab={SetTab} />}
       {tab === 'sale' && <SaleSection tab={tab}/>}
-      {tab === 'productList' && <ProductList SetTab={SetTab} />}
+      {tab === 'productList' && <ProductList getSelectProduct = {getSelectProduct} SetTab={SetTab} />}
       {tab === 'categoryList' && <CategoryList SetTab={SetTab} />}
       {tab === 'productAdd' && <ProductAddForm SetTab={SetTab} />}
-      {tab === 'ProductView' && <ProductView SetTab={SetTab} />}
+      {tab === 'ProductView' && <ProductView productData={selectProduct} SetTab={SetTab} />}
       {tab === 'settings' && <div>Settings Content Here</div>}
 
     </section>

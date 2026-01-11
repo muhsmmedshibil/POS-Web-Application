@@ -3,6 +3,8 @@ import Home from "./Pages/Home";
 import LoginPage from "./Pages/LoginPage";
 import ProtectedRoute from "./routes/ProtectedRoute"; // Import your new file
 import './App.css'
+import AdminPanel from "./Pages/AdminPanel";
+// import AdminPanel from "./Pages/AdminPanel";
 
 function App() {
   return (
@@ -18,8 +20,9 @@ function App() {
           <ProtectedRoute>
             <Home />
           </ProtectedRoute>
-        } 
+        }   
       />
+      <Route path="/AdminPanel" element={<AdminPanel />} />
     </Routes>
   );
 }

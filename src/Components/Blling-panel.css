@@ -206,14 +206,7 @@
 
     .cart-list {
         max-height: 400px;
-        /* Limits scroll height on mobile */
         min-height: 200px;
     }
 
-    .checkout-footer {
-        position: sticky;
-        bottom: 0;
-        z-index: 10;
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-    }
 }

@@ -205,25 +205,3 @@
 
 
 
-/* --- Responsive Media Queries --- */
-
-@media (max-width: 480px) {
-    .receipt {
-        padding: 10px;
-    }
-
-    .receipt .billsection {
-        padding: 15px;
-        min-height: 350px;
-    }
-
-    .receipt .item-row {
-        font-size: 12px;
-        grid-template-columns: 20px 1fr 35px 60px; /* Narrower for mobile */
-        gap: 4px;
-    }
-
-    .receipt h1 {
-        font-size: 20px;
-    }
-}

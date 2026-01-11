@@ -71,10 +71,10 @@ export function CategoryList({ SetTab }) {
                                             <td><strong>{item.name}</strong></td>
                                             <td>{item.description}</td>
                                             <td >
-                                                <div className="actions" style={{}}>
-                                                    <i class="bi bi-eye-fill" onClick={() => SetTab('ProductView')}></i>
-                                                    <i className="bi bi-pencil-fill" ></i>
-                                                    <i className="fa-solid fa-trash" onClick={() => setDelete(true)}></i>
+                                                <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', color: '#718096' }}>
+                                                    <i className="bi bi-eye-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => (SetTab('ProductView'), getSelectProduct(item))}></i>
+                                                    <i className="bi bi-pencil-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }}></i>
+                                                    <i className="fa-solid fa-trash" style={{ cursor: 'pointer', color: '#e53e3e', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => setDelete(true)}></i>
                                                 </div>
                                             </td>
                                         </tr>

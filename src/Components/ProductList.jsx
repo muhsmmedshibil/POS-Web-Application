@@ -5,7 +5,7 @@ import { useState, useMemo } from 'react';
 import { DeletionModal } from './DeletionModal.jsx';
 import { phoneProducts } from '../data/Products.js';
 
-export function ProductList({ SetTab }) {
+export function ProductList({ SetTab, getSelectProduct }) {
     const [IsDelete, setDelete] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -27,7 +27,7 @@ export function ProductList({ SetTab }) {
     // 3. Graph Logic: Circular Progress
     const stockCapacity = 500;
     const stockPercentage = Math.min(Math.round((totalStockQuantity / stockCapacity) * 100), 100);
-    
+
     // Circumference for r=16 is ~100. This maps percentage 1:1 to dasharray
     const strokeValue = stockPercentage;
     const remainingValue = 100 - stockPercentage;
@@ -55,7 +55,7 @@ export function ProductList({ SetTab }) {
 
                     {/* --- STATS CARDS SECTION --- */}
                     <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-                        
+
                         {/* Card 1: Stock Info (Circular Graph) */}
                         <div className="card" style={{ padding: '20px', background: 'white', borderRadius: '12px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
                             <p className="title" style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '10px' }}>Stock Info</p>
@@ -80,7 +80,7 @@ export function ProductList({ SetTab }) {
                                         <circle
                                             cx="18" cy="18" r="16"
                                             fill="transparent"
-                                            stroke="#52ad0a"
+                                            stroke="#4318FF"
                                             strokeWidth="3"
                                             strokeDasharray={`${strokeValue} ${remainingValue}`}
                                             strokeLinecap="round"
@@ -102,7 +102,7 @@ export function ProductList({ SetTab }) {
                             </div>
                             <div className="chart-area" style={{ marginTop: '10px' }}>
                                 <svg viewBox="0 0 200 60" style={{ width: '100%', height: '50px' }}>
-                                    <path d="M0,50 Q25,20 50,45 T100,20 T150,40 T200,10" fill="none" stroke="#52ad0a" strokeWidth="3" />
+                                    <path d="M0,50 Q25,20 50,45 T100,20 T150,40 T200,10" fill="none" stroke="#4318FF" strokeWidth="3" />
                                 </svg>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export function ProductList({ SetTab }) {
                             <div className="chart-area" style={{ marginTop: '15px' }}>
                                 <div className="bar-container" style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', height: '40px' }}>
                                     {[40, 80, 50, 90, 30, 70, 100, 60].map((h, i) => (
-                                        <div key={i} style={{ height: `${h}%`, width: '100%', background: '#52ad0a', borderRadius: '2px', opacity: 0.8 }}></div>
+                                        <div key={i} style={{ height: `${h}%`, width: '100%', background: '#4318FF', borderRadius: '2px', opacity: 0.8 }}></div>
                                     ))}
                                 </div>
                             </div>
@@ -192,10 +192,10 @@ export function ProductList({ SetTab }) {
                                         <td style={{ padding: '12px' }}>₹{item.purchaseRate.toLocaleString()}</td>
                                         <td style={{ padding: '12px' }}>₹{item.sellingRate.toLocaleString()}</td>
                                         <td style={{ padding: '12px' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', color: '#718096' }}>
-                                                <i className="bi bi-eye-fill" style={{ cursor: 'pointer' }} onClick={() => SetTab('ProductView')}></i>
-                                                <i className="bi bi-pencil-fill" style={{ cursor: 'pointer' }}></i>
-                                                <i className="fa-solid fa-trash" style={{ cursor: 'pointer', color: '#e53e3e' }} onClick={() => setDelete(true)}></i>
+                                            <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', color: '#718096' }}>
+                                                <i className="bi bi-eye-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => (SetTab('ProductView'), getSelectProduct(item))}></i>
+                                                <i className="bi bi-pencil-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }}></i>
+                                                <i className="fa-solid fa-trash" style={{ cursor: 'pointer',  padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => setDelete(true)}></i>
                                             </div>
                                         </td>
                                     </tr>

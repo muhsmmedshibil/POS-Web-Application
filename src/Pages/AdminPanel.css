@@ -1,0 +1,341 @@
+/* AdminPanel.css */
+
+/* 1. Variable Definitions */
+:root {
+    --primary: #4318FF;
+    --secondary: #2B3674;
+    --bg-main: #F4F7FE;
+    --text-gray: #A3AED0;
+    --white: #FFFFFF;
+    --shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.08);
+    --sidebar-width: 290px;
+}
+
+/* 2. Base Reset */
+
+
+/* 3. Layout Container */
+.dashboard-container {
+    display: flex;
+    width: 128%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* 4. Sidebar Styles */
+.dashboard-container .adSidebar {
+    width: var(--sidebar-width);
+    background: var(--white);
+    height: 100vh;
+    padding: 40px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid #E9EDF7;
+}
+
+.dashboard-container .adSidebar .sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.dashboard-container .adSidebar .sidebar-brand {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.dashboard-container .close-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.dashboard-container .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-container .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    cursor: pointer;
+    color: var(--text-gray);
+    font-weight: 500;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.dashboard-container .nav-item.active {
+    color: var(--secondary);
+    background: #f7f9ff;
+    border-right: 4px solid var(--primary);
+}
+
+.dashboard-container .nav-item:hover {
+    color: var(--primary);
+    background: #F4F7FE;
+}
+
+/* 5. Main Content Area */
+.dashboard-container .main-content {
+    flex: 1;
+    padding: 30px;
+    width: 100%;
+}
+
+/* Header/Navbar */
+.dashboard-container .top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-container .left-nav {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-container .mobile-menu-btn {
+    display: none;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.dashboard-container .nav-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--white);
+    padding: 10px 18px;
+    border-radius: 30px;
+    width: 250px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-container .nav-search input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.dashboard-container .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-container .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+}
+
+/* 6. Dashboard Cards */
+.dashboard-container .card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-container .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dashboard-container .stat-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.dashboard-container .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F4F7FE;
+    color: var(--primary);
+}
+
+.dashboard-container .stat-icon.secondary {
+    color: #01B574;
+    background: #e6f7f0;
+}
+
+.dashboard-container .stat-icon.orange {
+    color: #FFB547;
+    background: #fff8ed;
+}
+
+.dashboard-container .stat-info p {
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+.dashboard-container .stat-info h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* 7. Content Grid (Chart + Chat) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 20px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.chart-wrapper {
+    height: 300px;
+    width: 100%;
+}
+
+.btn-group {
+    background: #F4F7FE;
+    padding: 4px;
+    border-radius: 12px;
+    display: flex;
+}
+
+.btn-group button {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-group button.active {
+    background: var(--white);
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* 8. Chat List Styling */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.chat-item:last-child {
+    border-bottom: none;
+}
+
+.chat-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.chat-info h4 {
+    font-size: 14px;
+}
+
+.chat-info p {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.chat-time {
+    font-size: 11px;
+    color: var(--text-gray);
+    margin-left: auto;
+}
+
+/* 9. MEDIA QUERIES (The "Responsive" Part) */
+
+/* Tablets and Laptops */
+@media (max-width: 1024px) {
+    .dashboard-container .adSidebar {
+        position: fixed;
+        left: -290px;
+        /* Hidden */
+    }
+
+    .dashboard-container .adSidebar .sidebar.open {
+        left: 0;
+    }
+
+    .dashboard-container .adSidebar .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+        z-index: 999;
+    }
+
+    .mobile-menu-btn,
+    .close-menu {
+        display: block;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+        /* Stacked cards */
+    }
+
+    .nav-search {
+        width: 150px;
+    }
+
+    .top-navbar {
+        padding: 10px 0;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 480px) {
+    .nav-search {
+        display: none;
+        /* Hide search to save space */
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+}

@@ -166,25 +166,7 @@
     font-size: 14px;
 }
 
-.actions {
-    display: flex;
-    gap: 10px;
-}
 
-.action-btn {
-    padding: 8px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #f1f5f9;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.action-btn.edit:hover { background: #dbeafe; color: var(--primary-blue); }
-.action-btn.delete:hover { background: #fee2e2; color: #ef4444; }
 
 /* --- Grid Styles (Mobile/Tablet Card View) --- */
 .grid {
