@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
@@ -10,26 +10,29 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [isForgotMode, setIsForgotMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Dummy Credentials
     const DUMMY_EMAIL = "muhammedshibil@gmail.com";
     const DUMMY_PASSWORD = "shibil@123";
 
-    // Validation Logic
+    // Clear errors when toggling modes
+    useEffect(() => {
+        setErrors({});
+    }, [isForgotMode]);
+
     const validate = () => {
         let tempErrors = {};
-        
-        // Basic format validation
+        const emailRegex = /\S+@\S+\.\S+/;
+
         if (!email) {
             tempErrors.email = "Staff email is required";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!emailRegex.test(email)) {
             tempErrors.email = "Please enter a valid email address";
         }
 
-        if (!isForgotMode) {
-            if (!password) {
-                tempErrors.password = "Access pin is required";
-            }
+        if (!isForgotMode && !password) {
+            tempErrors.password = "Access pin is required";
         }
 
         setErrors(tempErrors);
@@ -38,41 +41,32 @@ function LoginPage() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        
-        // 1. Run basic validation (empty fields, email format)
         if (validate()) {
-            // 2. Check if credentials match dummy data
-            if (email === DUMMY_EMAIL && password === DUMMY_PASSWORD) {
-                localStorage.setItem('isLoggedIn', 'true');
-                console.log("Terminal Access Granted");
-                navigate('/Home');
-            } else {
-                // 3. Set specific errors for incorrect login
-                let loginErrors = {};
-                if (email !== DUMMY_EMAIL) {
-                    loginErrors.email = "Email not found in system";
+            setIsLoading(true);
+            
+            // Simulating a network delay for a more realistic/premium feel
+            setTimeout(() => {
+                if (email === DUMMY_EMAIL && password === DUMMY_PASSWORD) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    navigate('/Home');
+                } else {
+                    setErrors({
+                        email: email !== DUMMY_EMAIL ? "Email not recognized" : "",
+                        password: password !== DUMMY_PASSWORD ? "Invalid access pin" : ""
+                    });
+                    setIsLoading(false);
                 }
-                if (password !== DUMMY_PASSWORD) {
-                    loginErrors.password = "Incorrect access pin";
-                }
-                setErrors(loginErrors);
-            }
-        }
-    };
-
-    const handleForgotSubmit = (e) => {
-        e.preventDefault();
-        if (validate()) {
-            alert(`Recovery instructions sent to ${email}`);
-            setIsForgotMode(false);
+            }, 800);
         }
     };
 
     return (
         <div className="login-page-wrapper">
+            {/* Animated Background Blob */}
             <div className="abstract-decoration"></div>
 
             <div className="main-container">
+                {/* Left Side: Branding */}
                 <div className="content-left">
                     <div className="logo-area">
                         <svg className="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,15 +79,16 @@ function LoginPage() {
                             <span>Next-Gen Checkout Solutions</span>
                         </div>
                     </div>
-                    <div className="hero-message">
+                    <p className="hero-message">
                         Access your <b>Store Terminal</b> to manage transactions, track inventory, and generate reports.
-                    </div>
+                    </p>
                 </div>
 
+                {/* Right Side: Login Card */}
                 <div className="content-right">
                     <div className="login-card">
                         {!isForgotMode ? (
-                            <>
+                            <div className="fade-in">
                                 <h2>Terminal Sign-In</h2>
                                 <p className="subtitle">Enter credentials to open your shift.</p>
                                 
@@ -103,12 +98,9 @@ function LoginPage() {
                                         <input
                                             type="email"
                                             className={`input-field ${errors.email ? 'error-border' : ''}`}
-                                            placeholder="muhammedshibil@gmail.com"
+                                            placeholder="name@store.com"
                                             value={email}
-                                            onChange={(e) => {
-                                                setEmail(e.target.value);
-                                                if(errors.email) setErrors({...errors, email: ""});
-                                            }}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                         {errors.email && <span className="error-text">{errors.email}</span>}
                                     </div>
@@ -120,33 +112,35 @@ function LoginPage() {
                                             className={`input-field ${errors.password ? 'error-border' : ''}`}
                                             placeholder="••••••••"
                                             value={password}
-                                            onChange={(e) => {
-                                                setPassword(e.target.value);
-                                                if(errors.password) setErrors({...errors, password: ""});
-                                            }}
+                                            onChange={(e) => setPassword(e.target.value)}
                                         />
                                         {errors.password && <span className="error-text">{errors.password}</span>}
                                     </div>
 
                                     <div className="row-options">
-                                        <label><input type="checkbox" /> Stay clocked in</label>
+                                        <label className="checkbox-label">
+                                            <input type="checkbox" /> 
+                                            <span>Stay clocked in</span>
+                                        </label>
                                         <button
                                             type="button"
                                             className="text-btn"
-                                            onClick={() => { setIsForgotMode(true); setErrors({}); }}
+                                            onClick={() => setIsForgotMode(true)}
                                         >
                                             Forgot PIN?
                                         </button>
                                     </div>
 
-                                    <button type="submit" className="btn-login">Open Terminal</button>
+                                    <button type="submit" className="btn-login" disabled={isLoading}>
+                                        {isLoading ? "Verifying..." : "Open Terminal"}
+                                    </button>
                                 </form>
-                            </>
+                            </div>
                         ) : (
-                            <>
+                            <div className="fade-in">
                                 <h2>Reset Access</h2>
                                 <p className="subtitle">Enter recovery email for your POS pin.</p>
-                                <form onSubmit={handleForgotSubmit} noValidate>
+                                <form onSubmit={(e) => { e.preventDefault(); if(validate()) alert('Sent!'); }} noValidate>
                                     <div className="input-box">
                                         <label>Recovery Email</label>
                                         <input
@@ -162,12 +156,12 @@ function LoginPage() {
                                     <button
                                         type="button"
                                         className="btn-back"
-                                        onClick={() => { setIsForgotMode(false); setErrors({}); }}
+                                        onClick={() => setIsForgotMode(false)}
                                     >
                                         Back to Terminal
                                     </button>
                                 </form>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>

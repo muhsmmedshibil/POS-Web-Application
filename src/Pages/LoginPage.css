@@ -98,7 +98,7 @@
 
 /* --- Right Content (Login Card) --- */
 .login-page-wrapper .content-right {
-    flex: 0.8;
+    flex: .7;
     display: flex;
     justify-content: flex-end;
 }
@@ -177,8 +177,8 @@
 
 .btn-login {
     width: 100%;
-    background-color: #a3e9f5;
-    color: #2b1b6d;
+    background-color: #4318FF;
+    color: #ffffff;
     border: none;
     padding: 16px;
     border-radius: 12px;
@@ -250,29 +250,31 @@
 @media (max-width: 992px) {
     .login-page-wrapper {
         overflow-y: auto;
-        padding: 40px 0;
+        padding: 60px 0;
+        align-items: flex-start; /* Better for scrolling on short screens */
     }
     
-    .main-container {
+    .login-page-wrapper .main-container {
         flex-direction: column;
-        padding: 0 20px;
+        padding: 0 30px;
     }
 
-    .content-left {
+    .login-page-wrapper .content-left {
         align-items: center;
         text-align: center;
         padding-right: 0;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
     }
 
-    .hero-message {
+    .login-page-wrapper .hero-message {
         font-size: 1.8rem;
         max-width: 100%;
     }
 
-    .content-right {
+    .login-page-wrapper .content-right {
         justify-content: center;
         width: 100%;
+        flex: none; /* Reset flex to let content dictate height */
     }
 
     .login-card {
@@ -285,12 +287,24 @@
         font-size: 1.8rem;
     }
     
-    .hero-message {
+    .login-page-wrapper .hero-message {
         font-size: 1.4rem;
+        margin-bottom: 30px;
     }
 
     .login-card {
-        padding: 30px 20px;
+        padding: 35px 25px;
         border-radius: 20px;
+        backdrop-filter: blur(15px); /* Slightly less blur for better mobile performance */
+    }
+
+    .login-page-wrapper .content-right {
+        flex: none;
+        background-color: transparent; /* Removed the red background */
+    }
+
+    .login-page-wrapper .logo-icon {
+        width: 45px;
+        height: 45px;
     }
 }
