@@ -9,42 +9,51 @@
 }
 
 /* --- Global Layout --- */
-.main-content {
+.main-contents {
     flex: 1;
     display: flex;
     flex-direction: column;
     height: 100vh;
     /* Space for the BillingPanel on the right */
-    margin-right: 380px; 
+    margin-right: 360px; 
     background-color: var(--bg-light);
     transition: margin 0.3s ease;
     overflow: hidden; /* Main container doesn't scroll; child sections do */
+    /* background-color: red; */
+    padding: 0;
 }
 
 /* --- Header Section --- */
-.main-content .header {
+.main-contents .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--white);
     padding: 15px 24px;
     border-bottom: 1px solid var(--border-ui);
+    /* background-color: red; */
 }
-
-.main-content .header-text h1 {
+.main-contents .header-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+}
+.main-contents .header-text h1 {
     font-size: 1.25rem;
     color: var(--text-dark);
     margin: 0;
     font-weight: 700;
 }
 
-.main-content .header-text p {
+.main-contents .header-text p {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin: 4px 0 0 0;
 }
 
-.main-content .search-bar {
+.main-contents .search-bar {
     background-color: #f1f3f4;
     padding: 10px 15px;
     border-radius: 8px;
@@ -55,17 +64,17 @@
     border: 1px solid transparent;
 }
 
-.main-content .search-bar:focus-within {
-    border-color: var(--primary-green);
+.main-contents .search-bar:focus-within {
+    border-color: var(--primary-red);
     background-color: var(--white);
 }
 
-.main-content .search-bar i {
+.main-contents .search-bar i {
     color: #95a5a6;
     margin-right: 12px;
 }
 
-.main-content .search-bar input {
+.main-contents .search-bar input {
     border: none;
     outline: none;
     width: 100%;
@@ -84,7 +93,7 @@
 }
 
 /* --- Category Section (Horizontal Alignment) --- */
-.main-content .category-scroll {
+.main-contents .category-scroll {
     display: flex;             /* Changed from Grid to Flex for better horizontal flow */
     gap: 15px;
     margin-bottom: 30px;
@@ -93,11 +102,11 @@
     scrollbar-width: none;     /* Hides scrollbar in Firefox */
 }
 
-.main-content .category-scroll::-webkit-scrollbar {
+.main-contents .category-scroll::-webkit-scrollbar {
     display: none;             /* Hides scrollbar in Chrome/Safari */
 }
 
-.main-content .cat-card {
+.main-contents .cat-card {
     flex: 0 0 auto;            /* IMPORTANT: Prevents cards from shrinking */
     background: var(--white);
     display: flex;
@@ -112,16 +121,20 @@
     transition: all 0.2s ease;
     border: 2px solid transparent;
     text-align: center;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+    
 }
 
-.main-content .cat-card:hover {
-    transform: translateY(-2px);
+.main-contents .cat-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+.main-contents .cat-card:active {
+    transform: scale(0.98);
+}
 
-.main-content .cat-card.active {
-    border-color: var(--primary-red);
-    /* background: #f1f9ec; */
+.main-contents .cat-card.active {
+    background-color:var(--primary-red);
+    color: white;
 }
 /* Center the empty state message across the entire grid row */
 .no-products-container {
@@ -129,7 +142,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 250px;
+  min-height: 55vh;
   width: 100%;
 }
 
@@ -155,29 +168,29 @@
   cursor: pointer;
 }
 
-.main-content .cat-card i {
+.main-contents .cat-card i {
     font-size: 24px;
     margin-bottom: 8px;
 }
 
-.main-content .cat-card .name {
+.main-contents .cat-card .name {
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-dark);
+    /* color: var(--text-dark); */
 }
 .Icon{
     font-size: 25px;
 }
 
 /* --- Menu Grid (Product Alignment) --- */
-.main-content .section-header {
+.main-contents .section-header {
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--text-dark);
 }
 
-.main-content .menu-grid {
+.main-contents .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
@@ -185,13 +198,13 @@
 }
 
 /* --- Profile Section --- */
-.main-content .user-profile {
+.main-contents .user-profile {
     display: none;
     align-items: center;
     gap: 12px;
 }
 
-.main-content .user-profile img {
+.main-contents .user-profile img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -199,55 +212,71 @@
     border: 2px solid var(--primary-green);
 }
 
-.main-content .user-info h4 {
+.main-contents .user-info h4 {
     font-size: 0.9rem;
     margin: 0;
-    color: var(--text-dark);
+    color: black;
 }
 
-.main-content .user-info p {
+.main-contents .user-info p {
     font-size: 0.75rem;
     margin: 0;
-    color: var(--text-muted);
+    color: black;
 }
 
 /* --- Responsive Alignment --- */
 
 @media (max-width: 1200px) {
-    .main-content {
+    .main-contents {
         margin-right: 320px;
     }
 }
 
 @media (max-width: 992px) {
-    .main-content {
+    .main-contents {
         margin-right: 0;
+        margin: 0;
+        padding: 0;
         height: auto;
     }
 
-    .main-content .header {
+    .main-contents .header {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
 
-    .main-content .search-bar {
+    .main-contents .search-bar {
         max-width: 100%;
     }
 }
 
 @media (max-width: 576px) {
     .secentmain {
-        padding: 5px;
+        padding: 10px;
+        /* background-color: #52ad0a; */
+        /* margin: 0; */
     }
 
-    .main-content .menu-grid {
+    .main-contents .menu-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 12px;
     }
 
-    .main-content .cat-card {
+    .main-contents .cat-card {
         width: 90px;
         height: 90px;
+        /* border-radius: 6px; */
     }
+    .main-contents .cat-card {
+        border-radius: 10px;
+    }
+    .main-contents .user-profile{
+        display: flex;
+
+    }
+    .main-contents .header {
+    
+    padding: 15px ;
+}
 }

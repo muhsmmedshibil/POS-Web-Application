@@ -1,6 +1,6 @@
 /* --- CHECKOUT SIDEBAR CONTAINER --- */
 .checkout-sidebar {
-    width: 380px;
+    width: 360px;
     height: 100vh;
     background: #ffffff;
     display: flex;
@@ -19,13 +19,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    /* border-radius: 8px; */
-    /* Match sidebar curve if any */
+
 }
 
 .checkout-sidebar .custom-popup {
@@ -50,7 +49,7 @@
 }
 
 .close-popup-btn {
-    background:#469409;
+    background:#4318FF;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -63,7 +62,7 @@
 
 /* --- HEADER SECTION --- */
 .checkout-sidebar .cart-header {
-    padding: 24px 20px;
+    padding: 16px 20px;
     border-bottom: 1px solid #f8f8f8;
     display: flex;
     align-items: center;
@@ -124,11 +123,13 @@
 
 /* --- PRODUCT LIST AREA --- */
 .checkout-sidebar .cart-list {
+    /* height: 100 */
     flex: 1;
     overflow-y: auto;
     padding: 15px 20px;
     scrollbar-width: thin;
     scrollbar-color: #eeeeee transparent;
+    /* background-color: red; */
 }
 
 .checkout-sidebar .cart-list::-webkit-scrollbar {
@@ -180,7 +181,7 @@
 
 .checkout-sidebar .create-order-btn:active {
     transform: scale(0.98);
-    background-color: #469409;
+    background-color:var(--primary-red);
 }
 
 .checkout-sidebar .empty-cart-msg {
@@ -198,15 +199,11 @@
         position: relative;
         /* Stacks after the Menu Grid */
         width: 100%;
-        height: auto;
         border-left: none;
         border-top: 5px solid #e74c3c;
         /* Top accent border for mobile */
     }
 
-    .cart-list {
-        max-height: 400px;
-        min-height: 200px;
-    }
+    
 
 }

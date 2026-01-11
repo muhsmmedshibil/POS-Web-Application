@@ -12,6 +12,7 @@
     overflow-x: hidden;
     position: relative;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    /* background-color: #fff; */
 }
 
 /* --- Animated Background Decoration --- */

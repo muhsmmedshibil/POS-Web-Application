@@ -4,7 +4,7 @@ import { categories, phoneProducts } from '../data/Products.js';
 import { SaleProductList } from "./SaleProductList.jsx";
 import { BillingPanel } from "./Blling-panel.jsx";
 
-export function SaleSection({ tab }) {
+export function SaleSection({ tab,SetTab }) {
   const [cartItems, setCartItems] = useState([]);
   const [satatus, setStatus] = useState('bill')
 
@@ -46,20 +46,20 @@ export function SaleSection({ tab }) {
 
 
   return (
-    <main className="main-content">
+    <main className="main-contents">
       <header className="header">
         <div className="header-text">
           <div>
             <h1>Create New Sale</h1>
             <p id="current-date"> on {formattedDate}</p>
           </div>
-          <div className="user-profile">
-            <img src="https://i.pravatar.cc/150?u=lauren" alt="User" />
-            <div className="user-info">
-              <h4>Lauren Smith</h4>
-              <p>Store Manager</p>
+            <div className="user-profile" onClick={()=>SetTab('UserProfile')}>
+              <img src="https://i.pravatar.cc/150?u=lauren" alt="User" />
+              <div className="user-info">
+                <h4>Lauren Smith</h4>
+                <p>Store Manager</p>
+              </div>
             </div>
-          </div>
         </div>
 
         {/* Working Search Bar */}

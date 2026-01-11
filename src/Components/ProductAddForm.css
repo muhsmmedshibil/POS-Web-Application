@@ -356,6 +356,11 @@
     .ProductAddcontainer .btn-group {
         width: 100%;
     }
+    .ProductAddcontainer  {
+        padding: 0 8px;
+        padding-top: 90px;
+        padding-bottom: 80px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -374,5 +379,10 @@
 
     .ProductAddcontainer .header-section h2 {
         font-size: 1.25rem;
+    }
+     .ProductAddcontainer  {
+        padding: 0 8px;
+        padding-top: 60px;
+        padding-bottom: 20px;
     }
 }

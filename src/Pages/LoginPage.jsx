@@ -13,7 +13,7 @@ function LoginPage() {
 
     // Dummy Credentials
     const DUMMY_EMAIL = "muhammedshibil@gmail.com";
-    const DUMMY_PASSWORD = "sinsha@123";
+    const DUMMY_PASSWORD = "shibil@123";
 
     // Validation Logic
     const validate = () => {

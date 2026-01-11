@@ -25,11 +25,12 @@ const CategoryAdd = ({ setAddform, onClose }) => {
     control: (base, state) => ({
       ...base,
       background: 'rgba(255, 255, 255, 0.05)',
-      borderColor: state.isFocused ? '#00f2ad' : 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '12px',
+      borderColor: state.isFocused ? '#4318FF' : 'rgba(255, 255, 255, 0.1)',
+      borderRadius: '3px',
+      border:'1px solid rgb(206, 205, 205)  ',
       padding: '4px',
       boxShadow: state.isFocused ? '0 0 15px rgba(0, 242, 173, 0.2)' : 'none',
-      '&:hover': { borderColor: '#00f2ad' }
+      '&:hover': { borderColor: '#4318FF' }
     }),
     menu: (base) => ({
       ...base,
@@ -88,6 +89,12 @@ const CategoryAdd = ({ setAddform, onClose }) => {
               </div>
 
               <div className="field flex-1">
+                <label>Category ID</label>
+               <input type="text" placeholder='e.g. CAT-001'/>
+              </div>
+            </div>
+
+            <div className="field flex-1">
                 <label>Icon</label>
                 <Select
                   options={iconOptions}
@@ -99,7 +106,6 @@ const CategoryAdd = ({ setAddform, onClose }) => {
                   onChange={(opt) => setFormData({ ...formData, icon: opt.value })}
                 />
               </div>
-            </div>
 
             <div className="field">
               <label>Description</label>

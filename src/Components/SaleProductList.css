@@ -101,4 +101,19 @@
     cursor: not-allowed;
     filter: grayscale(0.5);
 }
+@media (max-width: 480px) {
+    .product-grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Two cards side-by-side on small phones */
+        gap: 12px;
+        padding: 10px;
+    }
+    
+    .product-card {
+        padding: 10px;
+        border-radius: 18px;
+    }
 
+    .product-card h3 {
+        font-size: 13px;
+    }
+}

@@ -249,6 +249,10 @@ export const Dashboard = ({ SetTab }) => {
                                 <button className="filter-btn" style={{ padding: '8px 12px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '6px', display: 'flex', alignItems: 'center', gap: '5px' }}>
                                     <Filter size={14} /> Filter
                                 </button>
+                                <button className="btn-primary">
+                                    <i class="bi bi-plus-lg"></i>
+                                    <span>Create Sale</span>
+                                </button>
                             </div>
                         </div>
 

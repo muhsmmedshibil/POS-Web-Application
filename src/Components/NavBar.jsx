@@ -12,19 +12,19 @@ export function NavBar({ head, text, button, buttonAction, iconAction }) {
                     <p>{text}</p>
                 </div>
             </div>
-            <div className="nav-search">
+            {/* <div className="nav-search">
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Search data..." />
-            </div>
+            </div> */}
 
 
             <div className="nav-actions">
-                <button onClick={buttonAction} className="btn-primary">
+                {/* <button onClick={buttonAction} className="btn-primary">
                     <i class="bi bi-plus-lg"></i>
                     <span>{button}</span>
-                </button>
-                <i className="fa-regular fa-bell notification-icon"></i>
-                <div className="user-pill">
+                </button> */}
+                <i className="fa-reg    ular fa-bell notification-icon"></i>
+                <div className="user-pill"  onClick={()=>SetTab('UserProfile')}>
 
                     <div className="user-info">
                         <p className="user-name">Thomas Anree</p>

@@ -35,13 +35,13 @@
 
 .sidebar .nav-item {
     width: 72px;
-    height: 70px;
+    height: 72px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    color: var(--primary-color);
+    color: rgb(53, 53, 53);
     cursor: pointer;
     transition: 0.3s;
     text-decoration: none;

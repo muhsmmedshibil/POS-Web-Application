@@ -160,6 +160,10 @@ export function ProductList({ SetTab, getSelectProduct }) {
                                 <button style={{ padding: '8px 12px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}>
                                     <Filter size={14} /> Filter
                                 </button>
+                                <button className="btn-primary" onClick={()=>addproduct()}>
+                                    <i class="bi bi-plus-lg"></i>
+                                    <span>Add Product</span>
+                                </button>
                             </div>
                         </div>
 
@@ -170,7 +174,9 @@ export function ProductList({ SetTab, getSelectProduct }) {
                                     <th style={{ padding: '12px' }}>PRO ID</th>
                                     <th style={{ padding: '12px' }}>Product Name</th>
                                     <th style={{ padding: '12px' }}>Category</th>
-                                    <th style={{ padding: '12px' }}>Qty</th>
+                                    <th style={{ padding: '12px' }}>Unit</th>
+                                    <th style={{ padding: '12px' }}>Initial Quantity</th>
+                                    <th style={{ padding: '12px' }}>Total Stock</th>
                                     <th style={{ padding: '12px' }}>Purchase</th>
                                     <th style={{ padding: '12px' }}>Selling</th>
                                     <th style={{ padding: '12px', textAlign: 'center' }}>Action</th>
@@ -187,15 +193,17 @@ export function ProductList({ SetTab, getSelectProduct }) {
                                                 <span style={{ fontWeight: '500' }}>{item.productName}</span>
                                             </div>
                                         </td>
-                                        <td style={{ padding: '12px' }}><span style={{ background: '#edf2f7', padding: '2px 8px', borderRadius: '10px', fontSize: '0.75rem' }}>{item.category}</span></td>
-                                        <td style={{ padding: '12px' }}>{item.totalStock}</td>
-                                        <td style={{ padding: '12px' }}>₹{item.purchaseRate.toLocaleString()}</td>
-                                        <td style={{ padding: '12px' }}>₹{item.sellingRate.toLocaleString()}</td>
-                                        <td style={{ padding: '12px' }}>
+                                        <td style={{ padding: '12px'}}><span >{item.category}</span></td>
+                                        <td style={{ padding: '12px' ,textAlign:'center'}}>{item.unit}</td>
+                                        <td style={{ padding: '12px' ,textAlign:'center'}}>{item.quantity}</td>
+                                        <td style={{ padding: '12px' ,textAlign:'center'}}>{item.totalStock} {item.unit}</td>
+                                        <td style={{ padding: '12px' ,textAlign:'center'}}>₹{item.purchaseRate.toLocaleString()}</td>
+                                        <td style={{ padding: '12px' ,textAlign:'center'}}>₹{item.sellingRate.toLocaleString()}</td>
+                                        <td style={{ padding: '12px' ,textAlign:'center'}}>
                                             <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', color: '#718096' }}>
                                                 <i className="bi bi-eye-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => (SetTab('ProductView'), getSelectProduct(item))}></i>
                                                 <i className="bi bi-pencil-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }}></i>
-                                                <i className="fa-solid fa-trash" style={{ cursor: 'pointer',  padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => setDelete(true)}></i>
+                                                <i className="fa-solid fa-trash" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => setDelete(true)}></i>
                                             </div>
                                         </td>
                                     </tr>

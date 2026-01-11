@@ -3,7 +3,7 @@ import './SideBar.css'
 export function SideBar({ SetTab, tab,onLogout }) {
   return (
     <nav className="sidebar">
-      <div className="logo">
+      <div className="logo"  onClick={()=>SetTab('UserProfile')}>
         <i className="fa-solid fa-fire-flame-curved"></i>
       </div>
 

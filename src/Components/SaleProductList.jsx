@@ -30,7 +30,7 @@ export function SaleProductList({ satatus, item, cartProduct }) {
             setPopup({ show: true, message: `${item.productName} added to cart !` });
         } else {
             // 4. Show Warning Popup instead of alert
-            setPopup({ show: true, message: "Switch to 'Cart'  to add items." });
+            setPopup({ show: true, message: "Switch to 'Cart' mode to add items." });
         }
     }
 

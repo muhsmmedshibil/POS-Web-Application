@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './PaymentSelect.css';
 
-export function PaymentSelect({ netPayable, setStatus,selectedMethod, setSelectedMethod }) {
+export function PaymentSelect({ netPayable, setStatus, selectedMethod, setSelectedMethod }) {
     // 1. States for selection and validation
-    
+
     const [showError, setShowError] = useState(false);
 
     const formattedTotal = netPayable.toFixed(0);
@@ -14,7 +14,7 @@ export function PaymentSelect({ netPayable, setStatus,selectedMethod, setSelecte
             setShowError(true); // Show the popup
             return;
         }
-        
+
         console.log("Method selected:", selectedMethod);
         if (setStatus) setStatus('receipt');
     };
@@ -35,7 +35,7 @@ export function PaymentSelect({ netPayable, setStatus,selectedMethod, setSelecte
             {showError && (
                 <div className="modal-overlay">
                     <div className="error-popup">
-                        <i className="bi bi-exclamation-circle" style={{fontSize: '2rem', color: '#ff4d4f'}}></i>
+                        <i className="bi bi-exclamation-circle" style={{ fontSize: '2rem', color: '#ff4d4f' }}></i>
                         <p>Please select a payment method before proceeding.</p>
                         <button onClick={() => setShowError(false)}>Got it</button>
                     </div>
@@ -44,8 +44,16 @@ export function PaymentSelect({ netPayable, setStatus,selectedMethod, setSelecte
 
             <div className="header">
                 <div className="header-left">
-                    <i className="bi bi-arrow-left back-arrow" onClick={() => setStatus('bill')}></i>
-                    <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}> Select Payment</span>
+                    <div style={{ display:"flex",alignItems:"center",gap:'10px'}}>
+                        <i className="bi bi-arrow-left back-arrow" onClick={() => setStatus('bill')}></i>
+                        <div>
+                            <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}> Select Payment</span> <br />
+                            <small>select a payment method</small>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <i className="bi bi-arrow-counterclockwise" style={{ cursor: 'pointer' }} onClick={() => setCartItems([])}></i>
+                    </div>
                 </div>
             </div>
 
@@ -56,12 +64,12 @@ export function PaymentSelect({ netPayable, setStatus,selectedMethod, setSelecte
 
             <div className="payment-grid">
                 {methods.map((m) => (
-                    <div 
+                    <div
                         key={m.id}
-                        className={`payment-card ${selectedMethod === m.id ? 'active' : ''}`} 
+                        className={`payment-card ${selectedMethod === m.id ? 'active' : ''}`}
                         onClick={() => {
                             setSelectedMethod(m.id);
-                            setShowError(false); 
+                            setShowError(false);
                         }}
                     >
                         <span className="icon">{m.icon}</span>

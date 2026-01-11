@@ -47,6 +47,10 @@ export function CategoryList({ SetTab }) {
                             <button className="btn-filter">
                                 <Filter size={14} /> Filter
                             </button>
+                            <button className="btn-primary" onClick={()=>addCategory()}>
+                                    <i class="bi bi-plus-lg"></i>
+                                    <span>Add Category</span>
+                                </button>
                         </div>
                     </div>
 
@@ -72,7 +76,7 @@ export function CategoryList({ SetTab }) {
                                             <td>{item.description}</td>
                                             <td >
                                                 <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', color: '#718096' }}>
-                                                    <i className="bi bi-eye-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => (SetTab('ProductView'), getSelectProduct(item))}></i>
+                                                    <i className="bi bi-eye-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => (SetTab('ProductView'))}></i>
                                                     <i className="bi bi-pencil-fill" style={{ cursor: 'pointer', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }}></i>
                                                     <i className="fa-solid fa-trash" style={{ cursor: 'pointer', color: '#e53e3e', padding: ' 6px 8px', background: '#f1f5f9', borderRadius: '5px' }} onClick={() => setDelete(true)}></i>
                                                 </div>

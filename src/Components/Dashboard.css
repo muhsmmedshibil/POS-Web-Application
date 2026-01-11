@@ -217,4 +217,9 @@
     .dashboard .btn-primary {
         width: 100%;
     }
+    .dashboard .main-container {
+        padding: 0 8px;
+        /* padding-top: 90px; */
+        padding-bottom: 80px;
+    }
 }

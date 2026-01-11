@@ -380,15 +380,15 @@
     font-weight: bold;
 }
 
- .actions {
+.actions {
     display: flex;
     justify-content: center;
     gap: '10px';
     /* background-color: firebrick; */
 }
 
- .actions i {
-   padding: 8px;
+.actions i {
+    padding: 8px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -438,5 +438,10 @@
     .search-input-wrapper,
     .search-input-wrapper input {
         width: 100%;
+    }
+
+    .Product-List {
+        padding: 0 8px;
+        padding-bottom: 80px;
     }
 }
